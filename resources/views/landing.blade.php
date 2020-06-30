@@ -18,7 +18,8 @@
                             <div class="hidden md:block">
                                 <div class="ml-10 flex items-baseline">
                                     <a href="#"
-                                        class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Laman Utama
+                                        class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Laman
+                                        Utama
                                     </a>
                                 </div>
                             </div>
@@ -55,7 +56,7 @@
         <header class="py-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
                 <h1 class="text-3xl leading-9 font-bold text-white">
-                    Skim Pembiayaan Pemulihan Perniagaan Sektor Mikro (CBRM) & Mobilepreneur
+                    Skim Pembiayaan TEKUN Mobilepreneur V2.0
                 </h1>
             </div>
         </header>
@@ -67,91 +68,20 @@
             <div class="bg-gray-100 rounded-lg shadow px-5 py-6 sm:px-6">
                 <div>
                     {{-- card content --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-2">
-                        <!-- card cbrm -->
-                        <div class="sm:mr-3 bg-white shadow overflow-hidden  sm:rounded-lg">
-                            <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
-                                <div class="flex">
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        CBRM <span class="text-red-500 text-sm">( Permohonan telah ditutup )</span>
-                                    </h3>
-                                    {{-- <a href="{{ route('cbrm') }}" type="button"
-                                        class="ml-auto inline-flex items-center px-2 py-2 border border-transparent text-xs leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:text-base">
-                                        <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M2.94 6.412A2 2 0 002 8.108V16a2 2 0 002 2h12a2 2 0 002-2V8.108a2 2 0 00-.94-1.696l-6-3.75a2 2 0 00-2.12 0l-6 3.75zm2.615 2.423a1 1 0 10-1.11 1.664l5 3.333a1 1 0 001.11 0l5-3.333a1 1 0 00-1.11-1.664L10 11.798 5.555 8.835z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                                        </svg>
-                                        Mohon Sekarang
-                                    </a> --}}
-                                </div>
-                                <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-                                    Skim Covid Business Recovery - Mikro.
-                                </p>
-                            </div>
-                            <div class="px-4 py-5 sm:px-6">
-                                <dl class="grid grid-cols-1 col-gap-4 row-gap-8 sm:grid-cols-2">
-                                    <div class="sm:col-span-2">
-                                        <dt class="mt-1 text-sm leading-5 text-gray-900">
-                                            Pengenalan Pembiayaan
-                                        </dt>
-                                        <dd class="text-sm leading-5 font-medium text-gray-500">
-                                            Skim Pembiayaan Pemulihan Perniagaan Sektor Mikro atau COVID Business Recovery - Micro (CBRM) adalah menyediakan pembiayaan suntikan modal pusingan kepada Usahawan TEKUN sedia ada dan usahawan mikro yang terjejas dengan penularan wabak COVID-19.
-                                        </dd>
-                                    </div>
-                                    <div class="sm:col-span-2">
-                                        <dt class="mt-1 text-sm leading-5 text-gray-900">
-                                            Nilai & Tempoh Pembiayaan
-                                        </dt>
-                                        <dd class="text-sm leading-5 font-medium text-gray-500">
-                                            Nilai Pembiayaan yang akan disalurkan adalah dari RM1,000 sehingga RM10,000 bagi setiap usahawan mengikut kelayakan serta tertakluk kepada terma dan syarat-syarat asas TEKUN Nasional.
-                                        </dd>
-                                    </div>
-                                    <div class="sm:col-span-2">
-                                        <dt class="mt-1 text-sm leading-5 text-gray-900">
-                                            Syarat-syarat Asas Pembiayaan CBRM adalah sama seperti syarat pembiayaan yang sedia ada seperti berikut:
-                                        </dt>
-                                        <dd class="text-sm leading-5 font-medium text-gray-500">
-                                            <table>
-                                                <tr>
-                                                    <td>1.</td>
-                                                    <td>Warganegara Malaysia Bumiputera / India.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2.</td>
-                                                    <td>Berumur 18 - 60 tahun (tempoh pembiayaan tamat sehingga 65 tahun).</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3.</td>
-                                                    <td>Mempunyai lesen penjaja atau permit daripada Pihak Berkuasa Tempatan (PBT) atau daftar perniagaan yang sah daripada Suruhanjaya Syarikat Malaysia (SSM) atau dokumen lain yang mengesahkan pemohon menjalankan perniagaan.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4.</td>
-                                                    <td>Terlibat secara langsung atau separuh masa dalam aktiviti perniagaan.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5.</td>
-                                                    <td>Tidak disenarai hitam dengan institusi kewangan lain.</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>6.</td>
-                                                    <td>Bebas daripada kebankrapan.</td>
-                                                </tr>
-                                            </table>
-                                        </dd>
-                                    </div>
-                                </dl>
-                            </div>
-                        </div>
+                    <div class="grid grid-cols-1">
                         <!-- card mobilepreneur -->
                         <div class="sm:ml-3 sm:mt-0 mt-8 bg-white shadow overflow-hidden  sm:rounded-lg">
                             <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
                                 <div class="flex">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Mobilepreneur
+                                        Mobilepreneur V2.0
                                     </h3>
                                     <a href="{{ route('mobile') }}" type="button"
                                         class="ml-auto inline-flex items-center px-2 py-2 border border-transparent text-xs leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 sm:text-base">
                                         <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M2.94 6.412A2 2 0 002 8.108V16a2 2 0 002 2h12a2 2 0 002-2V8.108a2 2 0 00-.94-1.696l-6-3.75a2 2 0 00-2.12 0l-6 3.75zm2.615 2.423a1 1 0 10-1.11 1.664l5 3.333a1 1 0 001.11 0l5-3.333a1 1 0 00-1.11-1.664L10 11.798 5.555 8.835z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                                            <path
+                                                d="M2.94 6.412A2 2 0 002 8.108V16a2 2 0 002 2h12a2 2 0 002-2V8.108a2 2 0 00-.94-1.696l-6-3.75a2 2 0 00-2.12 0l-6 3.75zm2.615 2.423a1 1 0 10-1.11 1.664l5 3.333a1 1 0 001.11 0l5-3.333a1 1 0 00-1.11-1.664L10 11.798 5.555 8.835z"
+                                                clip-rule="evenodd" fill-rule="evenodd"></path>
                                         </svg>
                                         Mohon Sekarang
                                     </a>
@@ -167,10 +97,17 @@
                                             Pengenalan Pembiayaan
                                         </dt>
                                         <dd class="text-sm leading-5 font-medium text-gray-500">
-                                            Skim Pembiayaan Pemulihan Mobilepreneur merupakan salah satu inisiatif Kerajaan yang dilaksanakan melalui TEKUN Nasional unutk memberi peluang menjana pendapatan kepada golongan yang hilang punca pendapatan serta terjejas akibat penularan COVID-19 serta arahan PKP yang bermula 18 Mac 2020 yang lalu. Skim ini menyediakan kemudahan pembiayaan modal kepada usahawan yang menjalankan perkhidmatan penghantaran makanan atau barangan menggunakan motosikal.
+                                            Skim Pembiayaan Pemulihan Mobilepreneur merupakan salah satu inisiatif
+                                            Kerajaan yang dilaksanakan melalui TEKUN Nasional unutk memberi peluang
+                                            menjana pendapatan kepada golongan yang hilang punca pendapatan serta
+                                            terjejas akibat penularan COVID-19 serta arahan PKP yang bermula 18 Mac 2020
+                                            yang lalu. Skim ini menyediakan kemudahan pembiayaan modal kepada usahawan
+                                            yang menjalankan perkhidmatan penghantaran makanan atau barangan menggunakan
+                                            motosikal.
                                         </dd>
                                         <dd class="mt-4 text-sm leading-5 font-medium text-gray-500">
-                                            Permohonan pembiayaan skim ini dibuka sehingga Septembar 2020 atau sehingga peruntukan dana digunakan sepenuhnya.
+                                            Permohonan pembiayaan skim ini dibuka sehingga Septembar 2020 atau sehingga
+                                            peruntukan dana digunakan sepenuhnya.
                                         </dd>
                                     </div>
                                     <div class="sm:col-span-2">
@@ -178,22 +115,26 @@
                                             Nilai & Tempoh Pembiayaan
                                         </dt>
                                         <dd class="text-sm leading-5 font-medium text-gray-500">
-                                            Nilai Pembiayaan yang akan disalurkan adalah dari RM1,000 sehingga RM2,000 (1 Tahun & 6 bulan Penangguhan) bagi setiap usahawan mengikut kelayakan serta tertakluk kepada terma dan syarat-syarat asas TEKUN Nasional.
+                                            Nilai Pembiayaan yang akan disalurkan adalah dari RM1,000 sehingga RM10,000
+                                            (1 Tahun & 6 bulan Penangguhan) bagi setiap usahawan mengikut kelayakan
+                                            serta tertakluk kepada terma dan syarat-syarat asas TEKUN Nasional.
                                         </dd>
                                     </div>
                                     <div class="sm:col-span-2">
                                         <dt class="mt-1 text-sm leading-5 text-gray-900">
-                                            Syarat-syarat Asas Pembiayaan CBRM adalah sama seperti syarat pembiayaan yang sedia ada seperti berikut:
+                                            Syarat-syarat Asas Pembiayaan CBRM adalah sama seperti syarat pembiayaan
+                                            yang sedia ada seperti berikut:
                                         </dt>
                                         <dd class="text-sm leading-5 font-medium text-gray-500">
                                             <table>
                                                 <tr>
                                                     <td>1.</td>
-                                                    <td>Warganegara Malaysia Bumiputera / India.</td>
+                                                    <td>Warganegara Malaysia (Bumiputera / India).</td>
                                                 </tr>
                                                 <tr>
                                                     <td>2.</td>
-                                                    <td>Berumur 18 - 60 tahun.</td>
+                                                    <td>Berumur 18-60 tahun (Tempoh pembiayaan tamat sehingga 65 tahun).
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>3.</td>
@@ -201,23 +142,40 @@
                                                 </tr>
                                                 <tr>
                                                     <td>4.</td>
-                                                    <td>Mempunyai pelantikan yang sah daripada syarikat e-hailing yang berdaftar.</td>
+                                                    <td>Mempunyai lesen memandu motosikal yang sah.</td>
                                                 </tr>
                                                 <tr>
                                                     <td>5.</td>
-                                                    <td>Mempunyai motosikal sendiri yang berdaftar & sah.</td>
+                                                    <td>Mempunyai pelantikan yang sah daripada syarikat e-hailing yang
+                                                        berdaftar.</td>
                                                 </tr>
                                                 <tr>
                                                     <td>6.</td>
-                                                    <td>Terlibat secara langsung / separuh masa dalam aktiviti perniagaan.</td>
+                                                    <td>Mempunyai motosikal sendiri yang berdaftar dan sah – bagi
+                                                        permohonan baik pulih motosikal dan modal pusingan.</td>
                                                 </tr>
                                                 <tr>
                                                     <td>7.</td>
-                                                    <td>Peserta perlu mematuhi garis panduan serta terma & syarat-syarat yang dikuatkuasakan oleh Kementerian Pengangkutan Awam (MOT).</td>
+                                                    <td>Mengemukakan dokumen asal sebutharga pembelian motosikal
+                                                        daripada pembekal yang sah - bagi permohonan membeli
+                                                        motosikal.
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>8.</td>
-                                                    <td>Pemohon yang mendapat sokongan dan disyorkan oleh mana-mana syarikat e-hailing adalah diberi keutamaan.</td>
+                                                    <td>Terlibat secara langsung atau separuh masa dalam aktiviti
+                                                        perniagaan.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>9.</td>
+                                                    <td>Peserta perlu mematuhi garis panduan serta terma dan
+                                                        syarat-syarat yang dikuatkuasakan oleh Kementerian Pengangkutan
+                                                        Malaysia ( MOT )</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>10.</td>
+                                                    <td>Pemohon yang mendapat surat sokongan dan disyorkan oleh
+                                                        mana-mana syarikat e-hailing adalah diberikan keutamaan.</td>
                                                 </tr>
                                             </table>
                                         </dd>

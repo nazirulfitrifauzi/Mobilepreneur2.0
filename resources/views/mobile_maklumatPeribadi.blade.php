@@ -18,56 +18,59 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="tekun_state"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri <span
+                                            class="text-red-700">*</span></label>
                                     <select id="tekun_state" name="tekun_state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Negeri</option>
                                         @foreach($negeri as $negeris)
-                                            <option value="{{ $negeris->kodnegeri }}" 
-                                                @if(isset(auth()->user()->peribadi->tekun_state))
-                                                    @if(auth()->user()->peribadi->tekun_state == $negeris->kodnegeri) 
-                                                        selected
-                                                    @else
-                                                        {{ old('tekun_state') == ($negeris->kodnegeri) ? 'selected':'' }}
-                                                    @endif 
-                                                @else
-                                                    {{ old('tekun_state') == ($negeris->kodnegeri) ? 'selected':'' }}
-                                                @endif
+                                        <option value="{{ $negeris->kodnegeri }}" @if(isset(auth()->
+                                            user()->peribadi->tekun_state))
+                                            @if(auth()->user()->peribadi->tekun_state == $negeris->kodnegeri)
+                                            selected
+                                            @else
+                                            {{ old('tekun_state') == ($negeris->kodnegeri) ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('tekun_state') == ($negeris->kodnegeri) ? 'selected':'' }}
+                                            @endif
                                             >{{ $negeris->namanegeri }}</option>
                                         @endforeach
                                     </select>
                                     @error('tekun_state')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="tekun_branch"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Cawangan Berhampiran dengan Lokasi Perniagaan <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Cawangan Berhampiran
+                                        dengan Lokasi Perniagaan <span class="text-red-700">*</span></label>
                                     <select id="tekun_branch" name="tekun_branch"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Cawangan</option>
                                         @foreach($cawangan as $cawangans)
-                                            <option value="{{ trim($cawangans->kodcawangan," ") }}" 
-                                                @if(isset(auth()->user()->peribadi->tekun_branch))
-                                                    @if(auth()->user()->peribadi->tekun_branch == trim($cawangans->kodcawangan," ")) 
-                                                        selected 
-                                                    @else
-                                                        {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
-                                                    @endif 
-                                                @else
-                                                    {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
-                                                @endif
+                                        <option value="{{ trim($cawangans->kodcawangan," ") }}" @if(isset(auth()->
+                                            user()->peribadi->tekun_branch))
+                                            @if(auth()->user()->peribadi->tekun_branch == trim($cawangans->kodcawangan,"
+                                            "))
+                                            selected
+                                            @else
+                                            {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
+                                            @endif
                                             >{{ $cawangans->namacawangan }}</option>
                                         @endforeach
                                     </select>
 
                                     @error('tekun_branch')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
                                 </div>
                             </div>
@@ -75,54 +78,56 @@
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="business_status"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Status Perniagaan <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Status Perniagaan
+                                        <span class="text-red-700">*</span></label>
                                     <select id="business_status" name="business_status"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Status Perniagaan</option>
-                                        <option value="Sedang Berniaga"
-                                            @if(isset(auth()->user()->peribadi->business_status))
-                                                @if(auth()->user()->peribadi->business_status == 'Sedang Berniaga')
-                                                    selected
-                                                @else
-                                                    {{ old('business_status') == 'Sedang Berniaga' ? 'selected':'' }}
-                                                @endif
+                                        <option value="Sedang Berniaga" @if(isset(auth()->
+                                            user()->peribadi->business_status))
+                                            @if(auth()->user()->peribadi->business_status == 'Sedang Berniaga')
+                                            selected
                                             @else
-                                                {{ old('business_status') == 'Sedang Berniaga' ? 'selected':'' }}
+                                            {{ old('business_status') == 'Sedang Berniaga' ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('business_status') == 'Sedang Berniaga' ? 'selected':'' }}
                                             @endif>Sedang Berniaga</option>
-                                        <option value="Memulakan Perniagaan"
-                                            @if(isset(auth()->user()->peribadi->business_status))
-                                                @if(auth()->user()->peribadi->business_status == 'Memulakan Perniagaan')
-                                                    selected
-                                                @else
-                                                    {{ old('business_status') == 'Memulakan Perniagaan' ? 'selected':'' }}
-                                                @endif
+                                        <option value="Memulakan Perniagaan" @if(isset(auth()->
+                                            user()->peribadi->business_status))
+                                            @if(auth()->user()->peribadi->business_status == 'Memulakan Perniagaan')
+                                            selected
                                             @else
-                                                {{ old('business_status') == 'Memulakan Perniagaan' ? 'selected':'' }}
+                                            {{ old('business_status') == 'Memulakan Perniagaan' ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('business_status') == 'Memulakan Perniagaan' ? 'selected':'' }}
                                             @endif> Memulakan Perniagaan </option>
                                     </select>
                                     @error('business_status')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Usahawan TEKUN  <span class="text-red-700">*</span></legend>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Usahawan TEKUN
+                                            <span class="text-red-700">*</span></legend>
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-4">
                                             <div class="flex items-center">
-                                                <input id="business_type_yes" name="business_type" value="1" type="radio" 
-                                                    @if(isset(auth()->user()->peribadi->business_type))
-                                                        @if(auth()->user()->peribadi->business_type == '1') 
-                                                            checked 
-                                                        @else
-                                                            {{ old('business_type') == '1' ? 'checked':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('business_type') == '1' ? 'checked':'' }}
-                                                    @endif
+                                                <input id="business_type_yes" name="business_type" value="1"
+                                                    type="radio" @if(isset(auth()->user()->peribadi->business_type))
+                                                @if(auth()->user()->peribadi->business_type == '1')
+                                                checked
+                                                @else
+                                                {{ old('business_type') == '1' ? 'checked':'' }}
+                                                @endif
+                                                @else
+                                                {{ old('business_type') == '1' ? 'checked':'' }}
+                                                @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="business_type_yes" class="ml-3">
@@ -132,14 +137,14 @@
 
                                                 <input id="business_type_no" name="business_type" value="0" type="radio"
                                                     @if(isset(auth()->user()->peribadi->business_type))
-                                                        @if(auth()->user()->peribadi->business_type == '0') 
-                                                            checked 
-                                                        @else
-                                                            {{ old('business_type') == '0' ? 'checked':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('business_type') == '0' ? 'checked':'' }}
-                                                    @endif
+                                                @if(auth()->user()->peribadi->business_type == '0')
+                                                checked
+                                                @else
+                                                {{ old('business_type') == '0' ? 'checked':'' }}
+                                                @endif
+                                                @else
+                                                {{ old('business_type') == '0' ? 'checked':'' }}
+                                                @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="business_type_no" class="ml-3">
@@ -148,9 +153,9 @@
                                                 </label>
                                             </div>
                                             @error('business_type')
-                                                <p class="text-red-500 text-xs italic mt-4">
-                                                    {{ $message }}
-                                                </p>
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
                                             @enderror
                                         </div>
                                     </fieldset>
@@ -159,41 +164,42 @@
 
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="bank1" class="block text-sm font-medium leading-5 text-gray-700">Nama Bank <span class="text-red-700">*</span></label>
+                                    <label for="bank1" class="block text-sm font-medium leading-5 text-gray-700">Nama
+                                        Bank <span class="text-red-700">*</span></label>
                                     <select id="bank1" name="bank1"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Nama Bank</option>
                                         @foreach($bank as $banks)
-                                            <option value="{{ $banks->id }}" 
-                                                @if(isset(auth()->user()->peribadi->bank1))
-                                                    @if(auth()->user()->peribadi->bank1 == $banks->id) 
-                                                        selected
-                                                    @else
-                                                        {{ old('bank1') == ($banks->id) ? 'selected':'' }}
-                                                    @endif
-                                                @else
-                                                    {{ old('bank1') == ($banks->id) ? 'selected':'' }}
-                                                @endif
+                                        <option value="{{ $banks->id }}" @if(isset(auth()->user()->peribadi->bank1))
+                                            @if(auth()->user()->peribadi->bank1 == $banks->id)
+                                            selected
+                                            @else
+                                            {{ old('bank1') == ($banks->id) ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('bank1') == ($banks->id) ? 'selected':'' }}
+                                            @endif
                                             >{{ $banks->nama_bank }}</option>
                                         @endforeach
                                     </select>
                                     @error('bank1')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="bank1_acct" class="block text-sm font-medium leading-5 text-gray-700">No Akaun Bank <span class="text-red-700">*</span></label>
+                                    <label for="bank1_acct" class="block text-sm font-medium leading-5 text-gray-700">No
+                                        Akaun Bank <span class="text-red-700">*</span></label>
                                     <input id="bank1_acct" name="bank1_acct"
                                         value="{{ isset(auth()->user()->peribadi->bank1_acct) ? auth()->user()->peribadi->bank1_acct : old('bank1_acct') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('bank1_acct')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('bank1_acct')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -222,13 +228,16 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="mt-1">
-                                <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">Gambar <span class="text-red-700">*</span></label>
+                                <label for="profile_pic"
+                                    class="block text-sm leading-5 font-medium text-gray-700">Gambar Passport<span
+                                        class="text-red-700">*</span></label>
 
                                 @if(isset(auth()->user()->peribadi->gambar))
                                 <div class="mt-2 px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
                                     x-data="{ open: false }">
                                     <div class="w-full">
-										<img src="storage\{{auth()->user()->ic_no}}\{{auth()->user()->peribadi->gambar}}" class="h-40">
+                                        <img src="storage\{{auth()->user()->ic_no}}\{{auth()->user()->peribadi->gambar}}"
+                                            class="h-40">
                                     </div>
                                     <div class="w-full">
                                         <span class="mt-3 inline-flex rounded-md shadow-sm">
@@ -246,32 +255,23 @@
                                     </div>
 
                                     {{-- delete gambar modal --}}
-                                    <div
-                                        class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
-                                        x-show="open"
-                                    >
-                                        <div class="fixed inset-0 transition-opacity"
-                                            x-show="open"
+                                    <div class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
+                                        x-show="open">
+                                        <div class="fixed inset-0 transition-opacity" x-show="open"
                                             x-transition:enter="ease-out duration-300""
-                                            x-transition:enter-start="opacity-0"
-                                            x-transition:enter-end="opacity-100"
+                                            x-transition:enter-start=" opacity-0" x-transition:enter-end="opacity-100"
                                             x-transition:leave="ease-in duration-200"
-                                            x-transition:leave-start="opacity-100"
-                                            x-transition:leave-end="opacity-0"
-                                        >
+                                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
                                             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                                         </div>
 
-                                        <div
-                                            class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
-                                            x-show="open"
-                                            x-transition:enter="ease-out duration-300""
-                                            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                        <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
+                                            x-show="open" x-transition:enter="ease-out duration-300"
+                                            x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                             x-transition:leave="ease-in duration-200"
                                             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                        >
+                                            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                                             <div class="sm:flex sm:items-start">
                                                 <div
                                                     class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
@@ -366,61 +366,65 @@
 
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Nama Pemohon <span class="text-red-700">*</span></label>
+                                    <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Nama
+                                        Pemohon <span class="text-red-700">*</span></label>
                                     <input id="name" name="name" value="{{ strtoupper(auth()->user()->name) }}" readonly
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('name')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('name')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) <span class="text-red-700">*</span></label>
+                                    <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. KP
+                                        (Baru) <span class="text-red-700">*</span></label>
                                     <input id="ic_no" name="ic_no" value="{{ auth()->user()->ic_no }}" readonly
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('ic_no')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('ic_no')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="ic_old" class="block text-sm font-medium leading-5 text-gray-700">No. KP (Lama)</label>
+                                    <label for="ic_old" class="block text-sm font-medium leading-5 text-gray-700">No. KP
+                                        (Lama)</label>
                                     <input id="ic_old" name="ic_old"
                                         value="{{ isset(auth()->user()->peribadi->ic_old) ? auth()->user()->peribadi->ic_old : old('ic_old') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('ic_old')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('ic_old')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-3">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Jantina <span class="text-red-700">*</span></legend>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Jantina <span
+                                                class="text-red-700">*</span></legend>
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-3">
                                             <div class="flex items-center">
                                                 <input id="genderL" name="gender" value="Lelaki" type="radio" readonly
                                                     @if( substr((auth()->user()->ic_no),11)%2 == 1 )
-                                                        checked
-                                                    @endif
+                                                checked
+                                                @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="genderL" class="ml-3">
                                                     <span
                                                         class="block text-sm leading-5 font-medium text-gray-700">Lelaki</span>
                                                 </label>
-                                                <input id="genderF" name="gender" value="Perempuan" type="radio" readonly
-                                                    @if( substr((auth()->user()->ic_no),11)%2 == 0 )
-                                                        checked
-                                                    @endif
+                                                <input id="genderF" name="gender" value="Perempuan" type="radio"
+                                                    readonly @if( substr((auth()->user()->ic_no),11)%2 == 0 )
+                                                checked
+                                                @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="genderF" class="ml-3">
@@ -429,9 +433,9 @@
                                                 </label>
                                             </div>
                                             @error('gender')
-                                                <p class="text-red-500 text-xs italic mt-4">
-                                                    {{ $message }}
-                                                </p>
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
                                             @enderror
                                         </div>
                                     </fieldset>
@@ -439,7 +443,8 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="religion"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Agama <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Agama <span
+                                            class="text-red-700">*</span></label>
                                     <select id="religion" name="religion"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Agama</option>
@@ -474,9 +479,9 @@
                                             @endif>Lain-lain</option>
                                     </select>
                                     @error('religion')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
                                 </div>
                             </div>
@@ -484,20 +489,23 @@
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="birthdate"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir <span
+                                            class="text-red-700">*</span></label>
                                     <input id="birthdate" name="birthdate" value=""
-                                    {{-- value="{{ isset(auth()->user()->peribadi->birthdate) ? auth()->user()->peribadi->birthdate : '' }}"  --}}
-                                    class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                                        {{-- value="{{ isset(auth()->user()->peribadi->birthdate) ? auth()->user()->peribadi->birthdate : '' }}"
+                                        --}}
+                                        class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     @error('birthdate')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
-								</div>
+                                </div>
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="race"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Bangsa/Kaum <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Bangsa/Kaum <span
+                                            class="text-red-700">*</span></label>
                                     <select id="race" name="race"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Bangsa/Kaum</option>
@@ -541,27 +549,28 @@
                                             @endif>Siam</option>
                                     </select>
                                     @error('race')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="age"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Umur <span class="text-red-700">*</span></label>
+                                    <label for="age" class="block text-sm font-medium leading-5 text-gray-700">Umur
+                                        <span class="text-red-700">*</span></label>
                                     <input id="age" name="age"
                                         value="{{ isset(auth()->user()->peribadi->age) ? auth()->user()->peribadi->age : old('age') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('age')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('age')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="marital" class="block text-sm font-medium leading-5 text-gray-700">Taraf Perkahwinan <span class="text-red-700">*</span></label>
+                                    <label for="marital" class="block text-sm font-medium leading-5 text-gray-700">Taraf
+                                        Perkahwinan <span class="text-red-700">*</span></label>
                                     <select id="marital" name="marital"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Taraf Perkahwinan</option>
@@ -570,7 +579,7 @@
                                             {{ old('marital') == 'Bujang' ? 'selected':'' }} @endif @else
                                             {{ old('marital') == 'Bujang' ? 'selected':'' }}
                                             @endif>Bujang
-                                        </option> 
+                                        </option>
                                         <option value="Berkahwin" @if(isset(auth()->user()->peribadi->marital))
                                             @if(auth()->user()->peribadi->marital == 'Berkahwin') selected @else
                                             {{ old('marital') == 'Berkahwin' ? 'selected':'' }} @endif @else
@@ -597,41 +606,43 @@
                                         </option>
                                     </select>
                                     @error('marital')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="dependent"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Bilangan Tanggungan <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Bilangan Tanggungan
+                                        <span class="text-red-700">*</span></label>
                                     <input id="dependent" name="dependent" type="number" min="0"
                                         value="{{ isset(auth()->user()->peribadi->dependent) ? auth()->user()->peribadi->dependent : old('dependent') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('dependent')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('dependent')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Orang Kelainan Upaya <span class="text-red-700">*</span></legend>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Orang Kelainan
+                                            Upaya <span class="text-red-700">*</span></legend>
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-3">
                                             <div class="flex items-center">
                                                 <input id="oku_yes" name="oku" value="Ya" type="radio"
                                                     @if(isset(auth()->user()->peribadi->oku))
-                                                        @if(auth()->user()->peribadi->oku == 'Ya') 
-                                                            checked 
-                                                        @else
-                                                            {{ old('oku') == 'Ya' ? 'checked':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('oku') == 'Ya' ? 'checked':'' }}
-                                                    @endif
+                                                @if(auth()->user()->peribadi->oku == 'Ya')
+                                                checked
+                                                @else
+                                                {{ old('oku') == 'Ya' ? 'checked':'' }}
+                                                @endif
+                                                @else
+                                                {{ old('oku') == 'Ya' ? 'checked':'' }}
+                                                @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="oku_yes" class="ml-3">
@@ -640,14 +651,14 @@
                                                 </label>
                                                 <input id="oku_no" name="oku" value="Tidak" type="radio"
                                                     @if(isset(auth()->user()->peribadi->oku))
-                                                        @if(auth()->user()->peribadi->oku == 'Tidak') 
-                                                            checked 
-                                                        @else
-                                                            {{ old('oku') == 'Tidak' ? 'checked':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('oku') == 'Tidak' ? 'checked':'' }}
-                                                    @endif
+                                                @if(auth()->user()->peribadi->oku == 'Tidak')
+                                                checked
+                                                @else
+                                                {{ old('oku') == 'Tidak' ? 'checked':'' }}
+                                                @endif
+                                                @else
+                                                {{ old('oku') == 'Tidak' ? 'checked':'' }}
+                                                @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="oku_no" class="ml-3">
@@ -656,9 +667,9 @@
                                                 </label>
                                             </div>
                                             @error('oku')
-                                                <p class="text-red-500 text-xs italic mt-4">
-                                                    {{ $message }}
-                                                </p>
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
                                             @enderror
                                         </div>
                                     </fieldset>
@@ -666,194 +677,194 @@
 
                                 <div class="col-span-6">
                                     <label for="address1"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat Kediaman <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Alamat Kediaman <span
+                                            class="text-red-700">*</span></label>
                                     <input id="address1" name="address1"
                                         value="{{ isset(auth()->user()->peribadi->address1) ? auth()->user()->peribadi->address1 : old('address1') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('address1')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('address1')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
 
                                     <input id="address2" name="address2"
                                         value="{{ isset(auth()->user()->peribadi->address2) ? auth()->user()->peribadi->address2 : old('address2') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('address2')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('address2')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                     <label for="postcode"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Poskod <span
+                                            class="text-red-700">*</span></label>
                                     <input id="postcode" name="postcode" minlength="5" maxlength="5"
                                         value="{{ isset(auth()->user()->peribadi->postcode) ? auth()->user()->peribadi->postcode : old('postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('postcode')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('postcode')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                                    <label for="city"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
+                                    <label for="city" class="block text-sm font-medium leading-5 text-gray-700">Bandar
+                                        <span class="text-red-700">*</span></label>
                                     <input id="city" name="city"
                                         value="{{ isset(auth()->user()->peribadi->city) ? auth()->user()->peribadi->city : old('city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('city')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('city')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                                    <label for="state"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
+                                    <label for="state" class="block text-sm font-medium leading-5 text-gray-700">Negeri
+                                        <span class="text-red-700">*</span></label>
                                     <select id="state" name="state"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih</option>
                                         @foreach($negerix as $negerix1)
-                                            <option value="{{ $negerix1->kodnegeri }}"
-                                                @if(isset(auth()->user()->peribadi->state))
-                                                    @if(auth()->user()->peribadi->state == $negerix1->kodnegeri) 
-                                                        selected 
-                                                    @else
-                                                        {{ old('state') == ($negerix1->kodnegeri) ? 'selected':'' }}
-                                                    @endif
-                                                @else
-                                                    {{ old('state') == ($negerix1->kodnegeri) ? 'selected':'' }}
-                                                @endif
+                                        <option value="{{ $negerix1->kodnegeri }}" @if(isset(auth()->
+                                            user()->peribadi->state))
+                                            @if(auth()->user()->peribadi->state == $negerix1->kodnegeri)
+                                            selected
+                                            @else
+                                            {{ old('state') == ($negerix1->kodnegeri) ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('state') == ($negerix1->kodnegeri) ? 'selected':'' }}
+                                            @endif
                                             >{{ $negerix1->namanegeri }}</option>
                                         @endforeach
                                     </select>
                                     @error('state')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="phone_home" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (Rumah)</label>
+                                    <label for="phone_home" class="block text-sm font-medium leading-5 text-gray-700">No
+                                        Telefon (Rumah)</label>
                                     <input id="phone_home" name="phone_home"
                                         value="{{ isset(auth()->user()->peribadi->phone_home) ? auth()->user()->peribadi->phone_home : old('phone_home') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('phone_home')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('phone_home')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) - cth (0123456789) <span class="text-red-700">*</span></label>
-                                    <input id="phone_hp" name="phone_hp" 
+                                    <label for="phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No
+                                        Telefon (HP) - cth (0123456789) <span class="text-red-700">*</span></label>
+                                    <input id="phone_hp" name="phone_hp"
                                         value="{{ isset(auth()->user()->peribadi->phone_hp) ? auth()->user()->peribadi->phone_hp : old('phone_hp') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('phone_hp')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('phone_hp')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="education" class="block text-sm font-medium leading-5 text-gray-700">Taraf Pendidikan <span class="text-red-700">*</span></label>
+                                    <label for="education"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Taraf Pendidikan <span
+                                            class="text-red-700">*</span></label>
                                     <select id="education" name="education"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Taraf Pendidikan</option>
-                                        <option value="PMR/Setaraf" 
-                                            @if(isset(auth()->user()->peribadi->education))
-                                                @if(auth()->user()->peribadi->education == 'PMR/Setaraf') 
-                                                    selected
-                                                @else
-                                                    {{ old('education') == "PMR/Setaraf" ? 'selected':'' }}
-                                                @endif
+                                        <option value="PMR/Setaraf" @if(isset(auth()->user()->peribadi->education))
+                                            @if(auth()->user()->peribadi->education == 'PMR/Setaraf')
+                                            selected
                                             @else
-                                                {{ old('education') == "PMR/Setaraf" ? 'selected':'' }}
+                                            {{ old('education') == "PMR/Setaraf" ? 'selected':'' }}
                                             @endif
-                                        >PMR/Setaraf</option>
-                                        <option value="SPM/Setaraf" 
-                                            @if(isset(auth()->user()->peribadi->education))
-                                                @if(auth()->user()->peribadi->education == 'SPM/Setaraf') 
-                                                    selected
-                                                @else
-                                                    {{ old('education') == "SPM/Setaraf" ? 'selected':'' }}
-                                                @endif
                                             @else
-                                                {{ old('education') == "SPM/Setaraf" ? 'selected':'' }}
+                                            {{ old('education') == "PMR/Setaraf" ? 'selected':'' }}
                                             @endif
-                                        >SPM/Setaraf</option>
-                                        <option value="STPM/Setaraf" 
-                                            @if(isset(auth()->user()->peribadi->education))
-                                                @if(auth()->user()->peribadi->education == 'STPM/Setaraf') 
-                                                    selected
-                                                @else
-                                                    {{ old('education') == "STPM/Setaraf" ? 'selected':'' }}
-                                                @endif
+                                            >PMR/Setaraf</option>
+                                        <option value="SPM/Setaraf" @if(isset(auth()->user()->peribadi->education))
+                                            @if(auth()->user()->peribadi->education == 'SPM/Setaraf')
+                                            selected
                                             @else
-                                                {{ old('education') == "STPM/Setaraf" ? 'selected':'' }}
+                                            {{ old('education') == "SPM/Setaraf" ? 'selected':'' }}
                                             @endif
-                                        >STPM/Setaraf</option>
-                                        <option value="Sijil" 
-                                            @if(isset(auth()->user()->peribadi->education))
-                                                @if(auth()->user()->peribadi->education == 'Sijil') 
-                                                    selected
-                                                @else
-                                                    {{ old('education') == "Sijil" ? 'selected':'' }}
-                                                @endif
                                             @else
-                                                {{ old('education') == "Sijil" ? 'selected':'' }}
+                                            {{ old('education') == "SPM/Setaraf" ? 'selected':'' }}
                                             @endif
-                                        >Sijil</option>
-                                        <option value="Diploma" 
-                                            @if(isset(auth()->user()->peribadi->education))
-                                                @if(auth()->user()->peribadi->education == 'Diploma') 
-                                                    selected
-                                                @else
-                                                    {{ old('education') == "Diploma" ? 'selected':'' }}
-                                                @endif
+                                            >SPM/Setaraf</option>
+                                        <option value="STPM/Setaraf" @if(isset(auth()->user()->peribadi->education))
+                                            @if(auth()->user()->peribadi->education == 'STPM/Setaraf')
+                                            selected
                                             @else
-                                                {{ old('education') == "Diploma" ? 'selected':'' }}
+                                            {{ old('education') == "STPM/Setaraf" ? 'selected':'' }}
                                             @endif
-                                        >Diploma</option>
-                                        <option value="Ijazah" 
-                                            @if(isset(auth()->user()->peribadi->education))
-                                                @if(auth()->user()->peribadi->education == 'Ijazah') 
-                                                    selected
-                                                @else
-                                                    {{ old('education') == "Ijazah" ? 'selected':'' }}
-                                                @endif
                                             @else
-                                                {{ old('education') == "Ijazah" ? 'selected':'' }}
+                                            {{ old('education') == "STPM/Setaraf" ? 'selected':'' }}
                                             @endif
-                                        >Ijazah</option>
+                                            >STPM/Setaraf</option>
+                                        <option value="Sijil" @if(isset(auth()->user()->peribadi->education))
+                                            @if(auth()->user()->peribadi->education == 'Sijil')
+                                            selected
+                                            @else
+                                            {{ old('education') == "Sijil" ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('education') == "Sijil" ? 'selected':'' }}
+                                            @endif
+                                            >Sijil</option>
+                                        <option value="Diploma" @if(isset(auth()->user()->peribadi->education))
+                                            @if(auth()->user()->peribadi->education == 'Diploma')
+                                            selected
+                                            @else
+                                            {{ old('education') == "Diploma" ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('education') == "Diploma" ? 'selected':'' }}
+                                            @endif
+                                            >Diploma</option>
+                                        <option value="Ijazah" @if(isset(auth()->user()->peribadi->education))
+                                            @if(auth()->user()->peribadi->education == 'Ijazah')
+                                            selected
+                                            @else
+                                            {{ old('education') == "Ijazah" ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('education') == "Ijazah" ? 'selected':'' }}
+                                            @endif
+                                            >Ijazah</option>
                                     </select>
                                     @error('education')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-6 gap-6 mt-6">
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="email"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Emel <span class="text-red-700">*</span></label>
+                                    <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Emel
+                                        <span class="text-red-700">*</span></label>
                                     <input id="email" name="email" value="{{ auth()->user()->email }}" readonly
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('email')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('email')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -862,11 +873,11 @@
                                     <input id="facebook" name="facebook"
                                         value="{{ isset(auth()->user()->peribadi->facebook) ? auth()->user()->peribadi->facebook : old('facebook') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('facebook')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('facebook')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -875,43 +886,47 @@
                                     <input id="instagram" name="instagram"
                                         value="{{ isset(auth()->user()->peribadi->instagram) ? auth()->user()->peribadi->instagram : old('instagram') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('instagram')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('instagram')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="profession"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang
+                                        <span class="text-red-700">*</span></label>
                                     <input id="profession" name="profession"
                                         value="{{ isset(auth()->user()->peribadi->profession) ? auth()->user()->peribadi->profession : old('profession') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('profession')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('profession')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan Bulanan <span class="text-red-700">*</span></label>
+                                    <label for="income"
+                                        class="block text-sm font-medium leading-5 text-gray-700">Pendapatan Bulanan
+                                        <span class="text-red-700">*</span></label>
                                     <div class="mt-1 relative rounded-md shadow-sm">
-                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             <span class="text-gray-500 sm:text-sm sm:leading-5">
                                                 RM
                                             </span>
                                         </div>
-                                        <input id="income" name="income"  min="0"
+                                        <input id="income" name="income" min="0"
                                             value="{{ isset(auth()->user()->peribadi->income) ? auth()->user()->peribadi->income : old('income') }}"
                                             type="number" step="0.01"
                                             class="mt-1 form-input block w-full pl-16 sm:pl-14 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     </div>
                                     @error('income')
-                                        <p class="text-red-500 text-xs italic mt-4">
-                                            {{ $message }}
-                                        </p>
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
                                     @enderror
                                 </div>
 
@@ -922,11 +937,11 @@
                                     <input id="employer_phone" name="employer_phone"
                                         value="{{ isset(auth()->user()->peribadi->employer_phone) ? auth()->user()->peribadi->employer_phone : old('employer_phone') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('employer_phone')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('employer_phone')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6">
@@ -935,11 +950,11 @@
                                     <input id="employer_name" name="employer_name"
                                         value="{{ isset(auth()->user()->peribadi->employer_name) ? auth()->user()->peribadi->employer_name : old('employer_name') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('employer_name')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('employer_name')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6">
@@ -948,20 +963,20 @@
                                     <input id="employer_address1" name="employer_address1"
                                         value="{{ isset(auth()->user()->peribadi->employer_address1) ? auth()->user()->peribadi->employer_address1 : old('employer_address1') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('employer_address1')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('employer_address1')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
 
                                     <input id="employer_address2" name="employer_address2"
                                         value="{{ isset(auth()->user()->peribadi->employer_address2) ? auth()->user()->peribadi->employer_address2 : old('employer_address2') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('employer_address2')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('employer_address2')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -970,11 +985,11 @@
                                     <input id="employer_postcode" name="employer_postcode" maxlength="5"
                                         value="{{ isset(auth()->user()->peribadi->employer_postcode) ? auth()->user()->peribadi->employer_postcode : old('employer_postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('employer_postcode')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('employer_postcode')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
@@ -983,11 +998,11 @@
                                     <input id="employer_city" name="employer_city"
                                         value="{{ isset(auth()->user()->peribadi->employer_city) ? auth()->user()->peribadi->employer_city : old('employer_city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('employer_city')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('employer_city')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -997,16 +1012,16 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih</option>
                                         @foreach($negerix as $negerix2)
-                                            <option value="{{ $negerix2->kodnegeri }}"
-                                                @if(isset(auth()->user()->peribadi->employer_state))
-                                                    @if(auth()->user()->peribadi->employer_state == $negerix2->kodnegeri) 
-                                                        selected 
-                                                    @else
-                                                        {{ old('employer_state') == ($negerix2->kodnegeri) ? 'selected':'' }}
-                                                    @endif
-                                                @else
-                                                    {{ old('employer_state') == ($negerix2->kodnegeri) ? 'selected':'' }}
-                                                @endif
+                                        <option value="{{ $negerix2->kodnegeri }}" @if(isset(auth()->
+                                            user()->peribadi->employer_state))
+                                            @if(auth()->user()->peribadi->employer_state == $negerix2->kodnegeri)
+                                            selected
+                                            @else
+                                            {{ old('employer_state') == ($negerix2->kodnegeri) ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('employer_state') == ($negerix2->kodnegeri) ? 'selected':'' }}
+                                            @endif
                                             >{{ $negerix2->namanegeri }}</option>
                                         @endforeach
                                     </select>
@@ -1041,20 +1056,21 @@
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Hubungan <span class="text-red-700">*</span></legend>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Hubungan <span
+                                                class="text-red-700">*</span></legend>
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-4">
                                             <div class="flex items-center">
-                                                <input id="spouse_type_husband" name="spouse_type" value="H"type="radio"
-                                                    @if(isset(auth()->user()->peribadi->spouse_type))
-                                                        @if(auth()->user()->peribadi->spouse_type == 'H') 
-                                                            checked 
-                                                        @else
-                                                            {{ old('spouse_type') == 'H' ? 'checked':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('spouse_type') == 'H' ? 'checked':'' }}
-                                                    @endif
+                                                <input id="spouse_type_husband" name="spouse_type" value="H"
+                                                    type="radio" @if(isset(auth()->user()->peribadi->spouse_type))
+                                                @if(auth()->user()->peribadi->spouse_type == 'H')
+                                                checked
+                                                @else
+                                                {{ old('spouse_type') == 'H' ? 'checked':'' }}
+                                                @endif
+                                                @else
+                                                {{ old('spouse_type') == 'H' ? 'checked':'' }}
+                                                @endif
                                                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="spouse_type_husband" class="ml-3">
@@ -1064,14 +1080,14 @@
 
                                                 <input id="spouse_type_wife" name="spouse_type" value="W" type="radio"
                                                     @if(isset(auth()->user()->peribadi->spouse_type))
-                                                        @if(auth()->user()->peribadi->spouse_type == 'W') 
-                                                            checked 
-                                                        @else
-                                                            {{ old('spouse_type') == 'W' ? 'checked':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('spouse_type') == 'W' ? 'checked':'' }}
-                                                    @endif
+                                                @if(auth()->user()->peribadi->spouse_type == 'W')
+                                                checked
+                                                @else
+                                                {{ old('spouse_type') == 'W' ? 'checked':'' }}
+                                                @endif
+                                                @else
+                                                {{ old('spouse_type') == 'W' ? 'checked':'' }}
+                                                @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="spouse_type_wife" class="ml-3">
@@ -1079,16 +1095,16 @@
                                                         class="block text-sm leading-5 font-medium text-gray-700">Isteri</span>
                                                 </label>
 
-                                                <input id="spouse_type_beneficiary" name="spouse_type" value="B" type="radio" 
-                                                    @if(isset(auth()->user()->peribadi->spouse_type))
-                                                        @if(auth()->user()->peribadi->spouse_type == 'B') 
-                                                            checked 
-                                                        @else
-                                                            {{ old('spouse_type') == 'B' ? 'checked':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('spouse_type') == 'B' ? 'checked':'' }}
-                                                    @endif
+                                                <input id="spouse_type_beneficiary" name="spouse_type" value="B"
+                                                    type="radio" @if(isset(auth()->user()->peribadi->spouse_type))
+                                                @if(auth()->user()->peribadi->spouse_type == 'B')
+                                                checked
+                                                @else
+                                                {{ old('spouse_type') == 'B' ? 'checked':'' }}
+                                                @endif
+                                                @else
+                                                {{ old('spouse_type') == 'B' ? 'checked':'' }}
+                                                @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="spouse_type_beneficiary" class="ml-3">
@@ -1097,9 +1113,9 @@
                                                 </label>
                                             </div>
                                             @error('spouse_type')
-                                                <p class="text-red-500 text-xs italic mt-4">
-                                                    {{ $message }}
-                                                </p>
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
                                             @enderror
                                         </div>
                                     </fieldset>
@@ -1107,34 +1123,37 @@
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="spouse_name"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Nama Suami/Isteri/Waris <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Nama
+                                        Suami/Isteri/Waris <span class="text-red-700">*</span></label>
                                     <input id="spouse_name" name="spouse_name"
                                         value="{{ isset(auth()->user()->peribadi->spouse_name) ? auth()->user()->peribadi->spouse_name : old('spouse_name') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('spouse_name')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('spouse_name')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Warganegara Malaysia  <span class="text-red-700">*</span></legend>
+                                        <legend class="block text-sm font-medium leading-5 text-gray-700">Warganegara
+                                            Malaysia <span class="text-red-700">*</span></legend>
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-4">
                                             <div class="flex items-center">
-                                                <input id="nationality_yes" name="nationality" value="Ya" type="radio" 
+                                                <input id="nationality_yes" name="nationality" value="Ya" type="radio"
                                                     @if(isset(auth()->user()->peribadi->nationality))
-                                                        @if(auth()->user()->peribadi->nationality == 'Ya') 
-                                                            checked 
-                                                        @else
-                                                            {{ old('nationality') == 'Ya' ? 'checked':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('nationality') == 'Ya' ? 'checked':'' }}
-                                                    @endif
-                                                class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                                @if(auth()->user()->peribadi->nationality == 'Ya')
+                                                checked
+                                                @else
+                                                {{ old('nationality') == 'Ya' ? 'checked':'' }}
+                                                @endif
+                                                @else
+                                                {{ old('nationality') == 'Ya' ? 'checked':'' }}
+                                                @endif
+                                                class="form-radio h-4 w-4 text-indigo-600 transition duration-150
+                                                ease-in-out" />
                                                 <label for="nationality_yes" class="ml-3">
                                                     <span
                                                         class="block text-sm leading-5 font-medium text-gray-700">Ya</span>
@@ -1142,24 +1161,25 @@
 
                                                 <input id="nationality_no" name="nationality" value="Tidak" type="radio"
                                                     @if(isset(auth()->user()->peribadi->nationality))
-                                                        @if(auth()->user()->peribadi->nationality == 'Tidak') 
-                                                            checked 
-                                                        @else
-                                                            {{ old('nationality') == 'Tidak' ? 'checked':'' }}
-                                                        @endif
-                                                    @else
-                                                        {{ old('nationality') == 'Tidak' ? 'checked':'' }}
-                                                    @endif
-                                                class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                                @if(auth()->user()->peribadi->nationality == 'Tidak')
+                                                checked
+                                                @else
+                                                {{ old('nationality') == 'Tidak' ? 'checked':'' }}
+                                                @endif
+                                                @else
+                                                {{ old('nationality') == 'Tidak' ? 'checked':'' }}
+                                                @endif
+                                                class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
+                                                ease-in-out" />
                                                 <label for="nationality_no" class="ml-3">
                                                     <span
                                                         class="block text-sm leading-5 font-medium text-gray-700">Tidak</span>
                                                 </label>
                                             </div>
                                             @error('nationality')
-                                                <p class="text-red-500 text-xs italic mt-4">
-                                                    {{ $message }}
-                                                </p>
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
                                             @enderror
                                         </div>
                                     </fieldset>
@@ -1174,18 +1194,18 @@
                                         @else
                                             block
                                         @endif
-                                    @endif" 
-                                id="passport_div">
+                                    @endif" id="passport_div">
                                     <label for="passport_no"
-                                        class="block text-sm font-medium leading-5 text-gray-700">No. Passport  <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">No. Passport <span
+                                            class="text-red-700">*</span></label>
                                     <input id="passport_no" name="passport_no"
                                         value="{{ isset(auth()->user()->peribadi->passport_no) ? auth()->user()->peribadi->passport_no : old('passport_no') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('passport_no')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                    @error('passport_no')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3
@@ -1197,44 +1217,46 @@
                                         @else
                                             hidden
                                         @endif
-                                    @endif" 
-                                id="spuose_ic_div">
+                                    @endif" id="spuose_ic_div">
                                     <label for="spouse_ic_no"
-                                        class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth (900000010000) <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">No. KP (Baru) - cth
+                                        (900000010000) <span class="text-red-700">*</span></label>
                                     <input id="spouse_ic_no" name="spouse_ic_no"
                                         value="{{ isset(auth()->user()->peribadi->spouse_ic_no) ? auth()->user()->peribadi->spouse_ic_no : old('spouse_ic_no') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('spouse_ic_no')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('spouse_ic_no')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="spouse_phone"
-                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) - cth (0123456789) <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) - cth
+                                        (0123456789) <span class="text-red-700">*</span></label>
                                     <input id="spouse_phone" name="spouse_phone"
                                         value="{{ isset(auth()->user()->peribadi->spouse_phone) ? auth()->user()->peribadi->spouse_phone : old('spouse_phone') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('spouse_phone')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('spouse_phone')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="spouse_profession"
-                                        class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang <span class="text-red-700">*</span></label>
+                                        class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang
+                                        <span class="text-red-700">*</span></label>
                                     <input id="spouse_profession" name="spouse_profession"
                                         value="{{ isset(auth()->user()->peribadi->spouse_profession) ? auth()->user()->peribadi->spouse_profession : old('spouse_profession') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('spouse_profession')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('spouse_profession')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6">
@@ -1243,20 +1265,20 @@
                                     <input id="spouse_employer_address1" name="spouse_employer_address1"
                                         value="{{ isset(auth()->user()->peribadi->spouse_employer_address1) ? auth()->user()->peribadi->spouse_employer_address1 : old('spouse_employer_address1') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('spouse_employer_address1')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('spouse_employer_address1')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
 
                                     <input id="spouse_employer_address2" name="spouse_employer_address2"
                                         value="{{ isset(auth()->user()->peribadi->spouse_employer_address2) ? auth()->user()->peribadi->spouse_employer_address2 : old('spouse_employer_address2') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('spouse_employer_address2')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('spouse_employer_address2')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -1265,11 +1287,11 @@
                                     <input id="spouse_employer_postcode" name="spouse_employer_postcode" maxlength="5"
                                         value="{{ isset(auth()->user()->peribadi->spouse_employer_postcode) ? auth()->user()->peribadi->spouse_employer_postcode : old('spouse_employer_postcode') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('spouse_employer_postcode')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('spouse_employer_postcode')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
@@ -1278,11 +1300,11 @@
                                     <input id="spouse_employer_city" name="spouse_employer_city"
                                         value="{{ isset(auth()->user()->peribadi->spouse_employer_city) ? auth()->user()->peribadi->spouse_employer_city : old('spouse_employer_city') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                        @error('spouse_employer_city')
-                                                    <p class="text-red-500 text-xs italic mt-4">
-                                                        {{ $message }}
-                                                    </p>
-                                                @enderror
+                                    @error('spouse_employer_city')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -1292,16 +1314,16 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih</option>
                                         @foreach($negerix as $negerix3)
-                                            <option value="{{ $negerix3->kodnegeri }}" 
-                                                @if(isset(auth()->user()->peribadi->spouse_employer_state))
-                                                    @if(auth()->user()->peribadi->spouse_employer_state == $negerix3->kodnegeri) 
-                                                        selected 
-                                                    @else
-                                                        {{ old('spouse_employer_state') == ($negerix3->kodnegeri) ? 'selected':'' }}
-                                                    @endif
-                                                @else
-                                                    {{ old('spouse_employer_state') == ($negerix3->kodnegeri) ? 'selected':'' }}
-                                                @endif
+                                        <option value="{{ $negerix3->kodnegeri }}" @if(isset(auth()->
+                                            user()->peribadi->spouse_employer_state))
+                                            @if(auth()->user()->peribadi->spouse_employer_state == $negerix3->kodnegeri)
+                                            selected
+                                            @else
+                                            {{ old('spouse_employer_state') == ($negerix3->kodnegeri) ? 'selected':'' }}
+                                            @endif
+                                            @else
+                                            {{ old('spouse_employer_state') == ($negerix3->kodnegeri) ? 'selected':'' }}
+                                            @endif
                                             >{{ $negerix3->namanegeri }}</option>
                                         @endforeach
                                     </select>

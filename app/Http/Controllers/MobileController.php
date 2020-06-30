@@ -416,8 +416,10 @@ class MobileController extends Controller
 
     public function storePinjaman(Request $request)
     {
-        if (is_null(auth()->user()->pinjaman)) {
+        // dd($request->all());
+        if (is_null(auth()->user()->pinjaman)) { // xde pinjaman
             $this->validate($request, [
+                'purpose'               => ['required', 'numeric'],
                 'purchase_price'        => ['required', 'numeric'],
                 'duration'              => ['required', 'numeric'],
                 'reference_name'        => ['required', 'string'],
@@ -427,17 +429,22 @@ class MobileController extends Controller
                 'reference_state'       => ['required', 'alpha'],
                 'reference_relation'    => ['required', 'string'],
                 'reference_phone'       => ['required', 'numeric', 'min:10'],
-                "doc_ic_no"             => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_bank"              => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_bil"               => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_support_letter"    => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_motor_pic"         => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_ic_no1"            => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:3000'],
+                "doc_ic_no2"            => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:3000'],
+                "doc_icP_no1"           => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:3000'],
+                "doc_icP_no2"           => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:3000'],
                 "doc_license"           => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_ask"               => ['required', 'file', 'mimes:pdf', 'max:3000'],
                 "doc_grant"             => ['required', 'file', 'mimes:pdf', 'max:3000'],
                 "doc_roadtax"           => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_motor_pic"         => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_support_letter"    => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_bank"              => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_bil"               => ['required', 'file', 'mimes:pdf', 'max:3000'],
             ]);
         } else {
             $this->validate($request, [
+                'purpose'               => ['required', 'numeric'],
                 'purchase_price'        => ['required', 'numeric'],
                 'duration'              => ['required', 'numeric'],
                 'reference_name'        => ['required', 'string'],
@@ -447,7 +454,11 @@ class MobileController extends Controller
                 'reference_state'       => ['required', 'alpha'],
                 'reference_relation'    => ['required', 'string'],
                 'reference_phone'       => ['required', 'numeric', 'min:10'],
-                "doc_ic_no"             => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
+                "doc_ic_no1"            => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
+                "doc_ic_no2"            => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
+                "doc_icP_no1"           => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_icP_no == NULL)],
+                "doc_icP_no2"           => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_icP_no == NULL)],
+                "doc_ask"               => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ask == NULL)],
                 "doc_bank"              => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_bank_statements == NULL)],
                 "doc_bil"               => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_utility == NULL)],
                 "doc_support_letter"    => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_support_letter == NULL)],
