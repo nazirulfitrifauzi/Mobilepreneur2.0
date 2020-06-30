@@ -55,15 +55,14 @@
         <header class="py-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
                 <h1 class="text-3xl leading-9 font-bold text-white">
-                    Skim Pembiayaan Tekun Mobilepreneur (Mobilepreneur)
+                    Skim Pembiayaan TEKUN Mobilepreneur V2.0
                 </h1>
             </div>
 
             @if (Session::has('success'))
-            <div class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification"
-            >
-                <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
-                >
+            <div
+                class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification">
+                <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto">
                     <div class="rounded-lg shadow-xs overflow-hidden">
                         <div class="p-4">
                             <div class="flex items-start">
@@ -84,8 +83,7 @@
                                 </div>
                                 <div class="ml-4 flex-shrink-0 flex">
                                     <button
-                                        class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
-                                    >
+                                        class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150">
                                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd"
                                                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -98,19 +96,21 @@
                     </div>
                 </div>
             </div>
-            @endif 
+            @endif
 
             @if (Session::has('error'))
-            <div class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification"
-            >
-                <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto"
-                >
+            <div
+                class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-20 sm:items-start sm:justify-end opacity-0 notification">
+                <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto">
                     <div class="rounded-lg shadow-xs overflow-hidden">
                         <div class="p-4">
                             <div class="flex items-start">
                                 <div class="flex-shrink-0">
-                                    <svg class="h-6 w-6 text-red-400" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-                                        <path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    <svg class="h-6 w-6 text-red-400" fill="none" stroke="currentColor"
+                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
                                     </svg>
                                 </div>
                                 <div class="ml-3 w-0 flex-1 pt-0.5">
@@ -123,8 +123,7 @@
                                 </div>
                                 <div class="ml-4 flex-shrink-0 flex">
                                     <button
-                                        class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
-                                    >
+                                        class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150">
                                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd"
                                                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -137,7 +136,7 @@
                     </div>
                 </div>
             </div>
-            @endif 
+            @endif
         </header>
     </div>
 
@@ -159,31 +158,39 @@
                                     Permohonan bagi
                                 </h4>
                                 <h4 class="flex justify-center text-lg leading-6 font-medium text-gray-900">
-                                    {{ strtoupper(auth()->user()->name) }} ( {{ substr(auth()->user()->ic_no,0,6) }}-{{ substr(auth()->user()->ic_no,6,2) }}-{{ substr(auth()->user()->ic_no,8,4) }} )
+                                    {{ strtoupper(auth()->user()->name) }} (
+                                    {{ substr(auth()->user()->ic_no,0,6) }}-{{ substr(auth()->user()->ic_no,6,2) }}-{{ substr(auth()->user()->ic_no,8,4) }}
+                                    )
                                 </h4>
                                 <h2 class="mt-4 flex justify-center text-3xl leading-8 font-medium text-gray-900">
-                                    @if (auth()->user()->status == 1 || auth()->user()->status == 2 || auth()->user()->status == 3 || auth()->user()->status == 4 || auth()->user()->status == 5 || auth()->user()->status == 6)
-                                        Berjaya dihantar & sedang diproses.
+                                    @if (auth()->user()->status == 1 || auth()->user()->status == 2 ||
+                                    auth()->user()->status == 3 || auth()->user()->status == 4 || auth()->user()->status
+                                    == 5 || auth()->user()->status == 6)
+                                    Berjaya dihantar & sedang diproses.
                                     @elseif(auth()->user()->status == 10 )
-                                        Permohonan Lulus
+                                    Permohonan Lulus
                                     @elseif(auth()->user()->status == 20)
-                                        Permohonan Gagal
+                                    Permohonan Gagal
                                     @elseif(auth()->user()->status == 7)
-                                        Permohonan KIV
+                                    Permohonan KIV
                                     @endif
                                 </h2>
                                 @if(auth()->user()->status == 7)
-                                    <h4 class="mt-4 flex justify-center text-lg leading-6 font-medium text-gray-900">
-                                        {{ strtoupper($catatan->catatan) }}. <br>Sila muat naik dokumen yang tidak lengkap disini:
-                                    </h4>
-                                    <div class="flex justify-center mt-4">
-                                        <a href="http://tiny.cc/CBRM2UPDATE" target="_blank" type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150"">
-                                            <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                                <path d="M2 10a4 4 0 004 4h3v3a1 1 0 102 0v-3h3a4 4 0 000-8 4 4 0 00-8 0 4 4 0 00-4 4zm9 4H9V9.414l-1.293 1.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 9.414V14z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                                            </svg>
-                                            Muat Naik Dokumen
-                                        </a>
-                                    </div>
+                                <h4 class="mt-4 flex justify-center text-lg leading-6 font-medium text-gray-900">
+                                    {{ strtoupper($catatan->catatan) }}. <br>Sila muat naik dokumen yang tidak lengkap
+                                    disini:
+                                </h4>
+                                <div class="flex justify-center mt-4">
+                                    <a href="http://tiny.cc/CBRM2UPDATE" target="_blank" type="button"
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150"">
+                                            <svg class=" -ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M2 10a4 4 0 004 4h3v3a1 1 0 102 0v-3h3a4 4 0 000-8 4 4 0 00-8 0 4 4 0 00-4 4zm9 4H9V9.414l-1.293 1.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 9.414V14z"
+                                            clip-rule="evenodd" fill-rule="evenodd"></path>
+                                        </svg>
+                                        Muat Naik Dokumen
+                                    </a>
+                                </div>
                                 @endif
                             </div>
                         </div>
@@ -197,9 +204,9 @@
 @endsection
 
 @push('js')
-    @if (Session::has('success') || Session::has('error'))
-    <script>
-        $(document).ready(function(){
+@if (Session::has('success') || Session::has('error'))
+<script>
+    $(document).ready(function(){
             setTimeout(function(){ 
                 $(".notification").animate({opacity: "1"}); 
             }, 1000);
@@ -208,6 +215,6 @@
                 $(".notification").animate({opacity: "0"}); 
             }, 10000);
         });
-    </script>
-    @endif
+</script>
+@endif
 @endpush

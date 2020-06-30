@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/mobile-storePinjaman', 'MobileController@storePinjaman')->name('mobile.storePinjaman');
     Route::delete('/mobile-deleteGambar/{id}', 'MobileController@deleteGambar')->name('mobile.deleteGambar');
     Route::delete('/mobile-deleteKP/{id}', 'MobileController@deleteKP')->name('mobile.deleteKP');
+    Route::delete('/mobile-deleteKPP/{id}', 'MobileController@deleteKPP')->name('mobile.deleteKPP');
+    Route::delete('/mobile-deleteAsk/{id}', 'MobileController@deleteAsk')->name('mobile.deleteAsk');
     Route::delete('/mobile-deleteBank/{id}', 'MobileController@deleteBank')->name('mobile.deleteBank');
     Route::delete('/mobile-deleteBil/{id}', 'MobileController@deleteBil')->name('mobile.deleteBil');
     Route::delete('/mobile-deleteSupportLetter/{id}', 'MobileController@deleteSupportLetter')->name('mobile.deleteSupportLetter');

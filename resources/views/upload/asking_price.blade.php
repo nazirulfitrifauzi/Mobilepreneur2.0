@@ -5,11 +5,11 @@
     <div id="ask-div"
         class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('doc_ask') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
         style="display: block;">
-        @if(isset(auth()->user()->pinjaman->document_driving_license))
+        @if(isset(auth()->user()->pinjaman->document_ask))
         <div class="flex" x-data="{ open: false }">
             <div class="justify-center">
                 <span class="inline-flex rounded-md shadow-sm">
-                    <a href="{{ asset('storage/'.auth()->user()->ic_no. '/' . auth()->user()->pinjaman->document_driving_license) }}"
+                    <a href="{{ asset('storage/'.auth()->user()->ic_no. '/' . auth()->user()->pinjaman->document_ask) }}"
                         target="_blank" type="button"
                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                         <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
@@ -36,8 +36,9 @@
 
             {{-- delete gambar modal --}}
             <div class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
-                x-show="open">
-                <div class="fixed inset-0 transition-opacity" x-show="open" x-transition:enter="ease-out duration-300""
+                x-show="open" x-cloak>
+                <div class="fixed inset-0 transition-opacity" x-show="open" x-cloak
+                    x-transition:enter="ease-out duration-300""
                     x-transition:enter-start=" opacity-0" x-transition:enter-end="opacity-100"
                     x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0">
@@ -45,7 +46,7 @@
                 </div>
 
                 <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
-                    x-show="open" x-transition:enter="ease-out duration-300"
+                    x-show="open" x-cloak x-transition:enter="ease-out duration-300"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave="ease-in duration-200"

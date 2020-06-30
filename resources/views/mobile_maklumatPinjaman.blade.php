@@ -432,7 +432,7 @@
         $('#ic-div1').css('display', 'block');
     }
 
-    function deleteKP1(id) {
+    function deleteKP(id) {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: 'POST',
@@ -488,21 +488,6 @@
         $('#ic-div2').css('display', 'block');
     }
 
-    function deleteKP2(id) {
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $.ajax({
-            type: 'POST',
-            url: "{{ url('mobile-deleteKP')}}" + '/' + id,
-            data: {
-                '_token': CSRF_TOKEN,
-                '_method': 'DELETE'
-            },
-            success: function () {
-                window.location = "{{ url('mobile')}}";
-            }
-        });
-    }
-
 </script>
 
 <script>
@@ -545,11 +530,11 @@
         $('#icP-div1').css('display', 'block');
     }
 
-    function deleteKPP1(id) {
+    function deleteKPP(id) {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: 'POST',
-            url: "{{ url('mobile-deleteKP')}}" + '/' + id,
+            url: "{{ url('mobile-deleteKPP')}}" + '/' + id,
             data: {
                 '_token': CSRF_TOKEN,
                 '_method': 'DELETE'
@@ -601,21 +586,6 @@
         $('#icP-div2').css('display', 'block');
     }
 
-    function deleteKPP2(id) {
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $.ajax({
-            type: 'POST',
-            url: "{{ url('mobile-deleteKP')}}" + '/' + id,
-            data: {
-                '_token': CSRF_TOKEN,
-                '_method': 'DELETE'
-            },
-            success: function () {
-                window.location = "{{ url('mobile')}}";
-            }
-        });
-    }
-
 </script>
 
 <script>
@@ -662,7 +632,7 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: 'POST',
-            url: "{{ url('mobile-deleteBank')}}" + '/' + id,
+            url: "{{ url('mobile-deleteAsk')}}" + '/' + id,
             data: {
                 '_token': CSRF_TOKEN,
                 '_method': 'DELETE'
