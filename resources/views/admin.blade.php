@@ -222,7 +222,7 @@
                                                 Kemaskini
                                             </button>
                                             @if (isset($data))
-                                            <button 
+                                            <button
                                                 class="ml-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
                                                 @click.prevent="open = true">
                                                 <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5">
@@ -236,11 +236,10 @@
 
                                             {{-- delete gambar modal --}}
                                             <div class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
-                                                x-show="open">
-                                                <div class="fixed inset-0 transition-opacity" 
-                                                    x-show="open"
+                                                x-show="open" x-cloak>
+                                                <div class="fixed inset-0 transition-opacity" x-show="open" x-cloak
                                                     x-transition:enter="ease-out duration-300""
-                                                    x-transition:enter-start=" opacity-0" 
+                                                    x-transition:enter-start=" opacity-0"
                                                     x-transition:enter-end="opacity-100"
                                                     x-transition:leave="ease-in duration-200"
                                                     x-transition:leave-start="opacity-100"
@@ -249,9 +248,9 @@
                                                 </div>
 
                                                 <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6"
-                                                    x-show="open" 
-                                                    x-transition:enter="ease-out duration-300""
-                                                    x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                    x-show="open" x-cloak x-transition:enter="ease-out duration-300""
+                                                    x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0
+                                                    sm:scale-95"
                                                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                                     x-transition:leave="ease-in duration-200"
                                                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"

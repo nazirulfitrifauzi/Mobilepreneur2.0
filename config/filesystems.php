@@ -50,7 +50,7 @@ return [
 
         'custom' => [
             'driver' => 'local',
-            'root'   => 'E:\apps\storage',
+            'root'   => 'E:\apps\mobilepreneur\storage',
         ],
 
         'public' => [
@@ -87,7 +87,7 @@ return [
     //],
 
     'links' => [
-        public_path('storage') => 'E:\apps\storage',
+        public_path('storage') => 'E:\apps\mobilepreneur\storage',
     ],
 
 ];

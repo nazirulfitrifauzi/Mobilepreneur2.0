@@ -31,20 +31,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     /** Landing Page **/
     Route::get('/home', 'RedirectController@home')->name('home');
 
-    /** CBRM Controller **/
-    Route::get('/cbrm', 'CbrmController@index')->name('cbrm');
-    Route::post('/cbrm-storePeribadi', 'CbrmController@storePeribadi')->name('cbrm.storePeribadi');
-    Route::post('/cbrm-storePerniagaan', 'CbrmController@storePerniagaan')->name('cbrm.storePerniagaan');
-    Route::post('/cbrm-storePinjaman', 'CbrmController@storePinjaman')->name('cbrm.storePinjaman');
-    Route::delete('/cbrm-deleteGambar/{id}', 'CbrmController@deleteGambar')->name('cbrm.deleteGambar');
-    Route::delete('/cbrm-deleteKP/{id}', 'CbrmController@deleteKP')->name('cbrm.deleteKP');
-    Route::delete('/cbrm-cbrm-deleteSSM/{id}', 'CbrmController@deleteSSM')->name('cbrm.deleteSSM');
-    Route::delete('/cbrm-deleteBank/{id}', 'CbrmController@deleteBank')->name('cbrm.deleteBank');
-    Route::delete('/cbrm-deleteBil/{id}', 'CbrmController@deleteBil')->name('cbrm.deleteBil');
-    Route::get('ajaxdata/cbrm-getCawangan', 'CbrmController@getCawangan')->name('cbrm.getCawangan');
-    Route::get('ajaxdata/cbrm-getAktiviti', 'CbrmController@getAktiviti')->name('cbrm.getAktiviti');
-    Route::get('/cbrm-status', 'CbrmController@status')->name('cbrm.status');
-
     /** Mobilepreneur Controller */
     Route::get('/mobile', 'MobileController@index')->name('mobile');
     Route::post('/mobile-storePeribadi', 'MobileController@storePeribadi')->name('mobile.storePeribadi');
@@ -52,6 +38,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/mobile-storePinjaman', 'MobileController@storePinjaman')->name('mobile.storePinjaman');
     Route::delete('/mobile-deleteGambar/{id}', 'MobileController@deleteGambar')->name('mobile.deleteGambar');
     Route::delete('/mobile-deleteKP/{id}', 'MobileController@deleteKP')->name('mobile.deleteKP');
+    Route::delete('/mobile-deleteKPP/{id}', 'MobileController@deleteKPP')->name('mobile.deleteKPP');
+    Route::delete('/mobile-deleteAsk/{id}', 'MobileController@deleteAsk')->name('mobile.deleteAsk');
     Route::delete('/mobile-deleteBank/{id}', 'MobileController@deleteBank')->name('mobile.deleteBank');
     Route::delete('/mobile-deleteBil/{id}', 'MobileController@deleteBil')->name('mobile.deleteBil');
     Route::delete('/mobile-deleteSupportLetter/{id}', 'MobileController@deleteSupportLetter')->name('mobile.deleteSupportLetter');
