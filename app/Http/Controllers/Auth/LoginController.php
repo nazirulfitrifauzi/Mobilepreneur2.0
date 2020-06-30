@@ -32,12 +32,12 @@ class LoginController extends Controller
     protected function authenticated()
     {
         if (Auth::check()) {
-            if (auth()->user()->submit === '1' && auth()->user()->scheme_code == '1131') {
+            if (auth()->user()->submit === '1') {
                 return redirect('mobile-status');
             } else {
                 if (is_null(auth()->user()->scheme_code)) {
                     return redirect('home');
-                } elseif (auth()->user()->scheme_code == '1131') {
+                } else {
                     return redirect('mobile');
                 }
             }

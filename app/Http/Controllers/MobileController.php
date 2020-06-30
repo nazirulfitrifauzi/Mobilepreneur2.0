@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Session;
 use Storage;
+use PDF;
 
 class MobileController extends Controller
 {
@@ -108,7 +109,7 @@ class MobileController extends Controller
             $valid_hp = str_replace('-', '', $mob);
             $valid_hp = '6' . $mob;
             $destination = urlencode($valid_hp);
-            $message = 'TEKUN NASIONAL - Permohonan Pembiayaan TEKUN Mobilepreneur anda telah diterima dan sedang diproses.';
+            $message = 'TEKUN NASIONAL - Permohonan Pembiayaan TEKUN Mobilepreneur V2.0 anda telah diterima dan sedang diproses.';
             $message = html_entity_decode($message, ENT_QUOTES, 'utf-8');
             $message = urlencode($message);
             $username = urlencode("JPDKTN2018");
@@ -416,8 +417,9 @@ class MobileController extends Controller
 
     public function storePinjaman(Request $request)
     {
-        if (is_null(auth()->user()->pinjaman)) {
+        if (is_null(auth()->user()->pinjaman)) { // xde pinjaman
             $this->validate($request, [
+                'purpose'               => ['required', 'numeric'],
                 'purchase_price'        => ['required', 'numeric'],
                 'duration'              => ['required', 'numeric'],
                 'reference_name'        => ['required', 'string'],
@@ -427,17 +429,22 @@ class MobileController extends Controller
                 'reference_state'       => ['required', 'alpha'],
                 'reference_relation'    => ['required', 'string'],
                 'reference_phone'       => ['required', 'numeric', 'min:10'],
-                "doc_ic_no"             => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_bank"              => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_bil"               => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_support_letter"    => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_motor_pic"         => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_ic_no1"            => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:3000'],
+                "doc_ic_no2"            => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:3000'],
+                "doc_icP_no1"           => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:3000'],
+                "doc_icP_no2"           => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:3000'],
                 "doc_license"           => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_ask"               => ['required', 'file', 'mimes:pdf', 'max:3000'],
                 "doc_grant"             => ['required', 'file', 'mimes:pdf', 'max:3000'],
                 "doc_roadtax"           => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_motor_pic"         => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_support_letter"    => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_bank"              => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_bil"               => ['required', 'file', 'mimes:pdf', 'max:3000'],
             ]);
-        } else {
+        } else { // ade pinjaman
             $this->validate($request, [
+                'purpose'               => ['required', 'numeric'],
                 'purchase_price'        => ['required', 'numeric'],
                 'duration'              => ['required', 'numeric'],
                 'reference_name'        => ['required', 'string'],
@@ -447,7 +454,11 @@ class MobileController extends Controller
                 'reference_state'       => ['required', 'alpha'],
                 'reference_relation'    => ['required', 'string'],
                 'reference_phone'       => ['required', 'numeric', 'min:10'],
-                "doc_ic_no"             => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
+                "doc_ic_no1"            => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
+                "doc_ic_no2"            => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
+                "doc_icP_no1"           => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_icP_no == NULL)],
+                "doc_icP_no2"           => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_icP_no == NULL)],
+                "doc_ask"               => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ask == NULL)],
                 "doc_bank"              => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_bank_statements == NULL)],
                 "doc_bil"               => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_utility == NULL)],
                 "doc_support_letter"    => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_support_letter == NULL)],
@@ -461,9 +472,70 @@ class MobileController extends Controller
         $ic_no = auth()->user()->ic_no;
 
         if (is_null(auth()->user()->pinjaman)) { // pinjaman null
-            $ic = $request->file('doc_ic_no');
-            $ic_name = auth()->user()->ic_no . '_ic.' . $ic->getClientOriginalExtension();
-            Storage::disk('custom')->putFileAs('/' . $ic_no, $ic, $ic_name);
+
+            // store image before convert
+            $ic1 = $request->file('doc_ic_no1');
+            $ic1_name = auth()->user()->ic_no . '_ic1.' . $ic1->getClientOriginalExtension();
+            Storage::disk('custom')->putFileAs('/' . $ic_no, $ic1, $ic1_name);
+
+            $ic2 = $request->file('doc_ic_no2');
+            $ic2_name = auth()->user()->ic_no . '_ic2.' . $ic2->getClientOriginalExtension();
+            Storage::disk('custom')->putFileAs('/' . $ic_no, $ic2, $ic2_name);
+
+            $icP1 = $request->file('doc_icP_no1');
+            $icP1_name = auth()->user()->ic_no . '_icP1.' . $icP1->getClientOriginalExtension();
+            Storage::disk('custom')->putFileAs('/' . $ic_no, $icP1, $icP1_name);
+
+            $icP2 = $request->file('doc_icP_no2');
+            $icP2_name = auth()->user()->ic_no . '_icP2.' . $icP2->getClientOriginalExtension();
+            Storage::disk('custom')->putFileAs('/' . $ic_no, $icP2, $icP2_name);
+
+            // convert file to pdf
+            $pdf_name_ic = $ic_no . '_ic.pdf';
+            $pdf_name_icP = $ic_no . '_icP.pdf';
+
+            $size_ic1 = getimagesize($ic1);
+            $size_ic2 = getimagesize($ic2);
+            $size_icP1 = getimagesize($icP1);
+            $size_icP2 = getimagesize($icP2);
+
+            $data1 = [
+                'title' => $pdf_name_ic,
+                'ic' => $ic_no,
+                'image1' => $ic1_name,
+                'image1_size' => $size_ic1,
+                'image2' => $ic2_name,
+                'image2_size' => $size_ic2,
+            ];
+
+            $data2 = [
+                'title' => $pdf_name_icP,
+                'ic' => $ic_no,
+                'image1' => $icP1_name,
+                'image1_size' => $size_icP1,
+                'image2' => $icP2_name,
+                'image2_size' => $size_icP2,
+            ];
+
+            $pdf1 = PDF::loadView('convert.ic_convert', $data1);
+            $pdf2 = PDF::loadView('convert.icP_convert', $data2);
+
+            // output pdf file & store
+            $file1 = $pdf1->output();
+            $file2 = $pdf2->output();
+
+            Storage::put('' . $ic_no . '/' . $pdf_name_ic, $file1);
+            Storage::put('' . $ic_no . '/' . $pdf_name_icP, $file2);
+
+            // delete image file
+            unlink(public_path('storage/' . $ic_no . '/' . $ic1_name));
+            unlink(public_path('storage/' . $ic_no . '/' . $ic2_name));
+            unlink(public_path('storage/' . $ic_no . '/' . $icP1_name));
+            unlink(public_path('storage/' . $ic_no . '/' . $icP2_name));
+
+            $ask = $request->file('doc_ask');
+            $ask_name = auth()->user()->ic_no . 'ask.' . $ask->getClientOriginalExtension();
+            Storage::disk('custom')->putFileAs('/' . $ic_no, $ask, $ask_name);
 
             $bank = $request->file('doc_bank');
             $bank_name = auth()->user()->ic_no . '_bank.' . $bank->getClientOriginalExtension();
@@ -495,11 +567,90 @@ class MobileController extends Controller
         } else { //pinjaman ade rekod
 
             if (is_null(auth()->user()->pinjaman->document_ic_no)) {
-                $ic = $request->file('doc_ic_no');
-                $ic_name = auth()->user()->ic_no . '_ic.' . $ic->getClientOriginalExtension();
-                Storage::disk('custom')->putFileAs('/' . $ic_no, $ic, $ic_name);
+                // store image before convert
+                $ic1 = $request->file('doc_ic_no1');
+                $ic1_name = auth()->user()->ic_no . '_ic1.' . $ic1->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $ic1, $ic1_name);
+
+                $ic2 = $request->file('doc_ic_no2');
+                $ic2_name = auth()->user()->ic_no . '_ic2.' . $ic2->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $ic2, $ic2_name);
+
+                // convert file to pdf
+                $pdf_name_ic = $ic_no . '_ic.pdf';
+
+                $size_ic1 = getimagesize($ic1);
+                $size_ic2 = getimagesize($ic2);
+
+                $data1 = [
+                    'title' => $pdf_name_ic,
+                    'ic' => $ic_no,
+                    'image1' => $ic1_name,
+                    'image1_size' => $size_ic1,
+                    'image2' => $ic2_name,
+                    'image2_size' => $size_ic2,
+                ];
+
+                $pdf1 = PDF::loadView('convert.ic_convert', $data1);
+
+                // output pdf file & store
+                $file1 = $pdf1->output();
+
+                Storage::put('' . $ic_no . '/' . $pdf_name_ic, $file1);
+
+                // delete image file
+                unlink(public_path('storage/' . $ic_no . '/' . $ic1_name));
+                unlink(public_path('storage/' . $ic_no . '/' . $ic2_name));
             } else {
-                $ic_name = auth()->user()->pinjaman->document_ic_no;
+                $pdf_name_ic = auth()->user()->pinjaman->document_ic_no;
+            }
+
+            if (is_null(auth()->user()->pinjaman->document_icP_no)) {
+                // store image before convert
+
+                $icP1 = $request->file('doc_icP_no1');
+                $icP1_name = auth()->user()->ic_no . '_icP1.' . $icP1->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $icP1, $icP1_name);
+
+                $icP2 = $request->file('doc_icP_no2');
+                $icP2_name = auth()->user()->ic_no . '_icP2.' . $icP2->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $icP2, $icP2_name);
+
+                // convert file to pdf
+                $pdf_name_icP = $ic_no . '_icP.pdf';
+
+                $size_icP1 = getimagesize($icP1);
+                $size_icP2 = getimagesize($icP2);
+
+                $data2 = [
+                    'title' => $pdf_name_icP,
+                    'ic' => $ic_no,
+                    'image1' => $icP1_name,
+                    'image1_size' => $size_icP1,
+                    'image2' => $icP2_name,
+                    'image2_size' => $size_icP2,
+                ];
+
+                $pdf2 = PDF::loadView('convert.icP_convert', $data2);
+
+                // output pdf file & store
+                $file2 = $pdf2->output();
+
+                Storage::put('' . $ic_no . '/' . $pdf_name_icP, $file2);
+
+                // delete image file
+                unlink(public_path('storage/' . $ic_no . '/' . $icP1_name));
+                unlink(public_path('storage/' . $ic_no . '/' . $icP2_name));
+            } else {
+                $pdf_name_icP = auth()->user()->pinjaman->document_ic_no;
+            }
+
+            if (is_null(auth()->user()->pinjaman->document_ask)) {
+                $ask = $request->file('doc_ask');
+                $ask_name = auth()->user()->ic_no . 'ask.' . $ask->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $ask, $ask_name);
+            } else {
+                $ask_name = auth()->user()->pinjaman->document_bank_statements;
             }
 
             if (is_null(auth()->user()->pinjaman->document_bank_statements)) {
@@ -562,6 +713,7 @@ class MobileController extends Controller
         $pinjaman = Pinjaman::updateOrCreate([
             'user_id'               => auth()->user()->id
         ], [
+            'purpose'                       => $request->get('purpose'),
             'purchase_price'                => $request->get('purchase_price'),
             'duration'                      => $request->get('duration'),
             'reference_name'                => $request->get('reference_name'),
@@ -572,7 +724,9 @@ class MobileController extends Controller
             'reference_state'               => $request->get('reference_state'),
             'reference_relation'            => $request->get('reference_relation'),
             'reference_phone'               => $request->get('reference_phone'),
-            'document_ic_no'                => $ic_name,
+            'document_ic_no'                => $pdf_name_ic,
+            'document_icP_no'               => $pdf_name_icP,
+            'document_ask'                  => $ask_name,
             'document_bank_statements'      => $bank_name,
             'document_utility'              => $bil_name,
             'document_support_letter'       => $support_letter_name,
@@ -631,6 +785,36 @@ class MobileController extends Controller
         Pinjaman::where('user_id', $id)->update(['completed' => 0]);
 
         Session::flash('success', 'Fail Kad Pengenalan telah dipadam');
+        Session::flash('Tab', 'tab3');
+    }
+
+    public function deleteKPP($id)
+    {
+        $id = auth()->user()->id;
+        $file = Pinjaman::where('user_id', $id)->value('document_icP_no');
+
+        Pinjaman::where('user_id', $id)->update(['document_icP_no' => NULL]);
+        unlink(public_path('storage/' . auth()->user()->ic_no . '/' . $file));
+
+        User::where('id', $id)->update(['completed' => 0]);
+        Pinjaman::where('user_id', $id)->update(['completed' => 0]);
+
+        Session::flash('success', 'Fail Kad Pengenalan Pasangan telah dipadam');
+        Session::flash('Tab', 'tab3');
+    }
+
+    public function deleteAsk($id)
+    {
+        $id = auth()->user()->id;
+        $file = Pinjaman::where('user_id', $id)->value('document_ask');
+
+        Pinjaman::where('user_id', $id)->update(['document_ask' => NULL]);
+        unlink(public_path('storage/' . auth()->user()->ic_no . '/' . $file));
+
+        User::where('id', $id)->update(['completed' => 0]);
+        Pinjaman::where('user_id', $id)->update(['completed' => 0]);
+
+        Session::flash('success', 'Fail Sebut Harga telah dipadam');
         Session::flash('Tab', 'tab3');
     }
 

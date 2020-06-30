@@ -20,7 +20,8 @@
                             <div class="hidden md:block">
                                 <div class="ml-10 flex items-baseline">
                                     <a href="#"
-                                        class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Laman Utama
+                                        class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Laman
+                                        Utama
                                     </a>
                                 </div>
                             </div>
@@ -58,32 +59,36 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
                 <div class="flex">
                     <h1 class="text-3xl leading-9 font-bold text-white">
-                        Skim Pembiayaan TEKUN Mobilepreneur
+                        Skim Pembiayaan TEKUN Mobilepreneur V2.0
                     </h1>
 
                     @if(is_null(auth()->user()->scheme_code))
-                        <div class="hidden sm:block ml-auto">
-                            <a href="{{ route('home') }}" type="button"
-                                class="inline-flex items-center px-2 py-2 border border-transparent text-xs leading-4 font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:shadow-outline-yellow active:bg-yellow-700 transition ease-in-out duration-150 sm:text-base">
-                                <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                                </svg>
-                                Kembali
-                            </a>
-                        </div>
-                    @endif
-                </div>
-
-                @if(is_null(auth()->user()->scheme_code))
-                    <div class="block sm:hidden flex justify-center">
+                    <div class="hidden sm:block ml-auto">
                         <a href="{{ route('home') }}" type="button"
-                            class="mt-4 inline-flex items-center px-2 py-2 border border-transparent text-xs leading-6 font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:shadow-outline-yellow active:bg-yellow-700 transition ease-in-out duration-150 sm:text-base">
+                            class="inline-flex items-center px-2 py-2 border border-transparent text-xs leading-4 font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:shadow-outline-yellow active:bg-yellow-700 transition ease-in-out duration-150 sm:text-base">
                             <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                                <path
+                                    d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" fill-rule="evenodd"></path>
                             </svg>
                             Kembali
                         </a>
                     </div>
+                    @endif
+                </div>
+
+                @if(is_null(auth()->user()->scheme_code))
+                <div class="block sm:hidden flex justify-center">
+                    <a href="{{ route('home') }}" type="button"
+                        class="mt-4 inline-flex items-center px-2 py-2 border border-transparent text-xs leading-6 font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:shadow-outline-yellow active:bg-yellow-700 transition ease-in-out duration-150 sm:text-base">
+                        <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                clip-rule="evenodd" fill-rule="evenodd"></path>
+                        </svg>
+                        Kembali
+                    </a>
+                </div>
                 @endif
             </div>
 
@@ -154,131 +159,138 @@
         <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-20">
             <!-- Replace with your content -->
             <div class="bg-gray-100 rounded-lg shadow px-5 py-6 sm:px-6">
-                <div 
-                    @if ($errors->any())
-                        @if (
-                            $errors->has('tekun_state') ||
-                            $errors->has('business_status') ||
-                            $errors->has('business_type') ||
-                            $errors->has('bank1') ||
-                            $errors->has('bank1_acct') ||
-                            $errors->has('gambar') ||
-                            $errors->has('name') ||
-                            $errors->has('ic_no') ||
-                            $errors->has('gender') ||
-                            $errors->has('religion') ||
-                            $errors->has('birthdate') ||
-                            $errors->has('race') ||
-                            $errors->has('age') ||
-                            $errors->has('marital') ||
-                            $errors->has('dependent') ||
-                            $errors->has('oku') ||
-                            $errors->has('address1') ||
-                            $errors->has('postcode') ||
-                            $errors->has('city') ||
-                            $errors->has('state') ||
-                            $errors->has('phone_hp') ||
-                            $errors->has('email') ||
-                            $errors->has('profession') ||
-                            $errors->has('income') ||
-                            $errors->has('employer_name') ||
-                            $errors->has('spouse_type') ||
-                            $errors->has('spouse_name') ||
-                            $errors->has('nationality') ||
-                            $errors->has('passport_no') ||
-                            $errors->has('spouse_ic_no') ||
-                            $errors->has('spouse_phone') ||
-                            $errors->has('spouse_profession') ||
-                            $errors->has('education')
-                            )
-                            x-data="{ tab: 'tab1' }"
-                        @elseif(
-                            $errors->has('business_name') ||
-                            $errors->has('business_sector') ||
-                            $errors->has('business_activity') ||
-                            $errors->has('business_address1') ||
-                            $errors->has('business_postcode') ||
-                            $errors->has('business_city') ||
-                            $errors->has('business_state') ||
-                            $errors->has('business_phone_hp') ||
-                            $errors->has('business_premise') ||
-                            $errors->has('business_ownership') ||
-                            $errors->has('business_modal') ||
-                            $errors->has('business_open') ||
-                            $errors->has('business_closed') ||
-                            $errors->has('business_no') ||
-                            $errors->has('business_income') ||
-                            $errors->has('partner_name') ||
-                            $errors->has('partner_ic') ||
-                            $errors->has('partner_address1') ||
-                            $errors->has('partner_postcode') ||
-                            $errors->has('partner_city') ||
-                            $errors->has('partner_state')
-                            )
-                            x-data="{ tab: 'tab2' }"
-                        @elseif(
-                            $errors->has('purchase_price') ||
-                            $errors->has('duration') ||
-                            $errors->has('reference_name') ||
-                            $errors->has('reference_address1') ||
-                            $errors->has('reference_postcode') ||
-                            $errors->has('reference_city') ||
-                            $errors->has('reference_state') ||
-                            $errors->has('reference_relation') ||
-                            $errors->has('reference_phone') ||
-                            $errors->has('doc_ic_no') ||
-                            $errors->has('doc_bank') ||
-                            $errors->has('doc_bil') ||
-                            $errors->has('doc_support_letter') ||
-                            $errors->has('doc_motor_pic') ||
-                            $errors->has('doc_license') ||
-                            $errors->has('doc_grant') ||
-                            $errors->has('doc_roadtax')
-                            )
-                            x-data="{ tab: 'tab3' }"
-                        @endif
+                <div @if ($errors->any())
+                    @if (
+                    $errors->has('tekun_state') ||
+                    $errors->has('business_status') ||
+                    $errors->has('business_type') ||
+                    $errors->has('bank1') ||
+                    $errors->has('bank1_acct') ||
+                    $errors->has('gambar') ||
+                    $errors->has('name') ||
+                    $errors->has('ic_no') ||
+                    $errors->has('gender') ||
+                    $errors->has('religion') ||
+                    $errors->has('birthdate') ||
+                    $errors->has('race') ||
+                    $errors->has('age') ||
+                    $errors->has('marital') ||
+                    $errors->has('dependent') ||
+                    $errors->has('oku') ||
+                    $errors->has('address1') ||
+                    $errors->has('postcode') ||
+                    $errors->has('city') ||
+                    $errors->has('state') ||
+                    $errors->has('phone_hp') ||
+                    $errors->has('email') ||
+                    $errors->has('profession') ||
+                    $errors->has('income') ||
+                    $errors->has('employer_name') ||
+                    $errors->has('spouse_type') ||
+                    $errors->has('spouse_name') ||
+                    $errors->has('nationality') ||
+                    $errors->has('passport_no') ||
+                    $errors->has('spouse_ic_no') ||
+                    $errors->has('spouse_phone') ||
+                    $errors->has('spouse_profession') ||
+                    $errors->has('education')
+                    )
+                    x-data="{ tab: 'tab1' }"
+                    @elseif(
+                    $errors->has('business_name') ||
+                    $errors->has('business_sector') ||
+                    $errors->has('business_activity') ||
+                    $errors->has('business_address1') ||
+                    $errors->has('business_postcode') ||
+                    $errors->has('business_city') ||
+                    $errors->has('business_state') ||
+                    $errors->has('business_phone_hp') ||
+                    $errors->has('business_premise') ||
+                    $errors->has('business_ownership') ||
+                    $errors->has('business_modal') ||
+                    $errors->has('business_open') ||
+                    $errors->has('business_closed') ||
+                    $errors->has('business_no') ||
+                    $errors->has('business_income') ||
+                    $errors->has('partner_name') ||
+                    $errors->has('partner_ic') ||
+                    $errors->has('partner_address1') ||
+                    $errors->has('partner_postcode') ||
+                    $errors->has('partner_city') ||
+                    $errors->has('partner_state')
+                    )
+                    x-data="{ tab: 'tab2' }"
+                    @elseif(
+                    $errors->has('purpose') ||
+                    $errors->has('purchase_price') ||
+                    $errors->has('duration') ||
+                    $errors->has('reference_name') ||
+                    $errors->has('reference_address1') ||
+                    $errors->has('reference_postcode') ||
+                    $errors->has('reference_city') ||
+                    $errors->has('reference_state') ||
+                    $errors->has('reference_relation') ||
+                    $errors->has('reference_phone') ||
+                    $errors->has('doc_ic_no1') ||
+                    $errors->has('doc_ic_no2') ||
+                    $errors->has('doc_icP_no1') ||
+                    $errors->has('doc_icP_no2') ||
+                    $errors->has('doc_ask') ||
+                    $errors->has('doc_bank') ||
+                    $errors->has('doc_bil') ||
+                    $errors->has('doc_support_letter') ||
+                    $errors->has('doc_motor_pic') ||
+                    $errors->has('doc_license') ||
+                    $errors->has('doc_grant') ||
+                    $errors->has('doc_roadtax')
+                    )
+                    x-data="{ tab: 'tab3' }"
+                    @endif
                     @else
-                        @if (Session::has('nextTab'))
-                            @if (Session::get("nextTab") === 'tab2' )
-                                x-data="{ tab: 'tab2' }"
-                            @elseif(Session::get("nextTab") === 'tab3')
-                                x-data="{ tab: 'tab3' }"
-                            @endif
-                        @else
-                            @if (Session::has('Tab'))
-                                @if (Session::get("Tab") === 'tab1' )
-                                    x-data="{ tab: 'tab1' }"
-                                @elseif(Session::get("Tab") === 'tab3')
-                                    x-data="{ tab: 'tab3' }"
-                                @endif
-                            @else
-                            x-data="{ tab: 'tab1' }"
-                            @endif
-                        @endif
+                    @if (Session::has('nextTab'))
+                    @if (Session::get("nextTab") === 'tab2' )
+                    x-data="{ tab: 'tab2' }"
+                    @elseif(Session::get("nextTab") === 'tab3')
+                    x-data="{ tab: 'tab3' }"
+                    @endif
+                    @else
+                    @if (Session::has('Tab'))
+                    @if (Session::get("Tab") === 'tab1' )
+                    x-data="{ tab: 'tab1' }"
+                    @elseif(Session::get("Tab") === 'tab3')
+                    x-data="{ tab: 'tab3' }"
+                    @endif
+                    @else
+                    x-data="{ tab: 'tab1' }"
+                    @endif
+                    @endif
                     @endif
 
 
                     @if ($errors->any())
-                        @if (
-                            $errors->has('tekun_state') || $errors->has('tekun_branch'))
-                            tab1
-                        @elseif($errors->has('business_ownership') || $errors->has('business_open') ||
-                            $errors->has('business_closed'))
-                            tab2
-                        @endif
+                    @if (
+                    $errors->has('tekun_state') || $errors->has('tekun_branch'))
+                    tab1
+                    @elseif($errors->has('business_ownership') || $errors->has('business_open') ||
+                    $errors->has('business_closed'))
+                    tab2
+                    @endif
                     @endif
                     >
                     <div class="sm:hidden mb-4 flex justify-between">
                         {{-- <span class="inline-flex rounded-md shadow-sm">
                             <a href="{{ asset('img') }}/cbrm/FAQ_cbrm.pdf" target="_blank" type="button"
-                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
-                                <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-8.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                FAQ
-                            </a>
+                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4
+                        font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none
+                        focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out
+                        duration-150">
+                        <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-8.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        FAQ
+                        </a>
                         </span> --}}
                         <span class="inline-flex rounded-md shadow-sm" x-data="{ open: false }">
                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
@@ -297,21 +309,16 @@
 
                             {{-- modal penzahiran mobile--}}
                             <div class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
-                                x-show="open">
-                                <div class="fixed inset-0 transition-opacity" 
-                                    x-show="open"
-                                    x-transition:enter="ease-out duration-300" 
-                                    x-transition:enter-start=" opacity-0"
-                                    x-transition:enter-end="opacity-100" 
-                                    x-transition:leave="ease-in duration-200"
-                                    x-transition:leave-start="opacity-100" 
-                                    x-transition:leave-end="opacity-0">
+                                x-show="open" x-cloak>
+                                <div class="fixed inset-0 transition-opacity" x-show="open" x-cloak
+                                    x-transition:enter="ease-out duration-300" x-transition:enter-start=" opacity-0"
+                                    x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+                                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
                                     <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                                 </div>
 
                                 <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-xl sm:w-full sm:p-6"
-                                    x-show="open" 
-                                    x-transition:enter="ease-out duration-300""
+                                    x-show="open" x-cloak x-transition:enter="ease-out duration-300"
                                     x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                     x-transition:leave="ease-in duration-200"
@@ -398,7 +405,6 @@
                                 user()->peribadi))
                                 selected
                                 @else
-
                                 @endif
                                 >
                                 Maklumat Peribadi
@@ -455,14 +461,17 @@
                             <div class="ml-auto">
                                 {{-- <span class="inline-flex rounded-md shadow-sm">
                                     <a href="{{ asset('img') }}/cbrm/FAQ_cbrm.pdf" target="_blank" type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
-                                        <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        FAQ
-                                    </a>
+                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4
+                                font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none
+                                focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition
+                                ease-in-out duration-150">
+                                <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                FAQ
+                                </a>
                                 </span> --}}
                                 <span class="inline-flex rounded-md shadow-sm" x-data="{ open: false }">
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150
@@ -481,22 +490,18 @@
 
                                     {{-- modal penzahiran desktop--}}
                                     <div class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
-                                        x-show="open">
-                                        <div class="fixed inset-0 transition-opacity" 
-                                            x-show="open"
+                                        x-show="open" x-cloak>
+                                        <div class="fixed inset-0 transition-opacity" x-show="open" x-cloak
                                             x-transition:enter="ease-out duration-300"
-                                            x-transition:enter-start=" opacity-0" 
-                                            x-transition:enter-end="opacity-100"
+                                            x-transition:enter-start=" opacity-0" x-transition:enter-end="opacity-100"
                                             x-transition:leave="ease-in duration-200"
-                                            x-transition:leave-start="opacity-100" 
-                                            x-transition:leave-end="opacity-0">
+                                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
                                             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                                         </div>
 
                                         <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-xl sm:w-full sm:p-6"
-                                            x-show="open" 
-                                            x-transition:enter="ease-out duration-300""
-                                            x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+                                            x-show="open" x-cloak x-transition:enter="ease-out duration-300"
+                                            x-transition:enter-start=" opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                                             x-transition:leave="ease-in duration-200"
                                             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
