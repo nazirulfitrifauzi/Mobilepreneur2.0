@@ -52,9 +52,9 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Cawangan</option>
                                         @foreach($cawangan as $cawangans)
-                                            <option value="{{ trim($cawangans->kodcawangan," ") }}" 
+                                            <option value="{{ trim($cawangans->kodcawangan,"") }}" 
                                                 @if(isset(auth()->user()->peribadi->tekun_branch))
-                                                    @if(auth()->user()->peribadi->tekun_branch == trim($cawangans->kodcawangan,""))
+                                                    @if(auth()->user()->peribadi->tekun_branch == trim($cawangans->kodcawangan," "))
                                                     selected
                                                     @else
                                                     {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
@@ -82,25 +82,25 @@
                                     <select id="business_status" name="business_status"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Status Perniagaan</option>
-                                        <option value="Sedang Berniaga" @if(isset(auth()->
-                                            user()->peribadi->business_status))
-                                            @if(auth()->user()->peribadi->business_status == 'Sedang Berniaga')
-                                            selected
+                                        <option value="Sedang Berniaga" 
+                                            @if(isset(auth()->user()->peribadi->business_status))
+                                                @if(auth()->user()->peribadi->business_status == 'Sedang Berniaga')
+                                                    selected
+                                                @else
+                                                {{ old('business_status') == 'Sedang Berniaga' ? 'selected':'' }}
+                                                @endif
                                             @else
-                                            {{ old('business_status') == 'Sedang Berniaga' ? 'selected':'' }}
-                                            @endif
-                                            @else
-                                            {{ old('business_status') == 'Sedang Berniaga' ? 'selected':'' }}
+                                                {{ old('business_status') == 'Sedang Berniaga' ? 'selected':'' }}
                                             @endif>Sedang Berniaga</option>
-                                        <option value="Memulakan Perniagaan" @if(isset(auth()->
-                                            user()->peribadi->business_status))
-                                            @if(auth()->user()->peribadi->business_status == 'Memulakan Perniagaan')
-                                            selected
+                                        <option value="Memulakan Perniagaan" 
+                                            @if(isset(auth()->user()->peribadi->business_status))
+                                                @if(auth()->user()->peribadi->business_status == 'Memulakan Perniagaan')
+                                                selected
+                                                @else
+                                                {{ old('business_status') == 'Memulakan Perniagaan' ? 'selected':'' }}
+                                                @endif
                                             @else
-                                            {{ old('business_status') == 'Memulakan Perniagaan' ? 'selected':'' }}
-                                            @endif
-                                            @else
-                                            {{ old('business_status') == 'Memulakan Perniagaan' ? 'selected':'' }}
+                                                {{ old('business_status') == 'Memulakan Perniagaan' ? 'selected':'' }}
                                             @endif> Memulakan Perniagaan </option>
                                     </select>
                                     @error('business_status')
@@ -117,18 +117,17 @@
                                         {{-- <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p> --}}
                                         <div class="mt-4">
                                             <div class="flex items-center">
-                                                <input id="business_type_yes" name="business_type" value="1"
-                                                    type="radio" @if(isset(auth()->user()->peribadi->business_type))
-                                                @if(auth()->user()->peribadi->business_type == '1')
-                                                checked
-                                                @else
-                                                {{ old('business_type') == '1' ? 'checked':'' }}
-                                                @endif
-                                                @else
-                                                {{ old('business_type') == '1' ? 'checked':'' }}
-                                                @endif
-                                                class="form-radio h-4 w-4 text-indigo-600 transition duration-150
-                                                ease-in-out" />
+                                                <input id="business_type_yes" name="business_type" value="1" type="radio" 
+                                                    @if(isset(auth()->user()->peribadi->business_type))
+                                                        @if(auth()->user()->peribadi->business_type == '1')
+                                                        checked
+                                                        @else
+                                                        {{ old('business_type') == '1' ? 'checked':'' }}
+                                                        @endif
+                                                    @else
+                                                        {{ old('business_type') == '1' ? 'checked':'' }}
+                                                    @endif
+                                                class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
                                                 <label for="business_type_yes" class="ml-3">
                                                     <span
                                                         class="block text-sm leading-5 font-medium text-gray-700">Ya</span>
@@ -136,14 +135,14 @@
 
                                                 <input id="business_type_no" name="business_type" value="0" type="radio"
                                                     @if(isset(auth()->user()->peribadi->business_type))
-                                                @if(auth()->user()->peribadi->business_type == '0')
-                                                checked
-                                                @else
-                                                {{ old('business_type') == '0' ? 'checked':'' }}
-                                                @endif
-                                                @else
-                                                {{ old('business_type') == '0' ? 'checked':'' }}
-                                                @endif
+                                                        @if(auth()->user()->peribadi->business_type == '0')
+                                                        checked
+                                                        @else
+                                                        {{ old('business_type') == '0' ? 'checked':'' }}
+                                                        @endif
+                                                    @else
+                                                        {{ old('business_type') == '0' ? 'checked':'' }}
+                                                    @endif
                                                 class="ml-8 form-radio h-4 w-4 text-indigo-600 transition duration-150
                                                 ease-in-out" />
                                                 <label for="business_type_no" class="ml-3">
@@ -169,15 +168,16 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Nama Bank</option>
                                         @foreach($bank as $banks)
-                                        <option value="{{ $banks->id }}" @if(isset(auth()->user()->peribadi->bank1))
-                                            @if(auth()->user()->peribadi->bank1 == $banks->id)
-                                            selected
-                                            @else
-                                            {{ old('bank1') == ($banks->id) ? 'selected':'' }}
-                                            @endif
-                                            @else
-                                            {{ old('bank1') == ($banks->id) ? 'selected':'' }}
-                                            @endif
+                                            <option value="{{ $banks->id }}" 
+                                                @if(isset(auth()->user()->peribadi->bank1))
+                                                    @if(auth()->user()->peribadi->bank1 == $banks->id)
+                                                        selected
+                                                    @else
+                                                    {{ old('bank1') == ($banks->id) ? 'selected':'' }}
+                                                    @endif
+                                                @else
+                                                    {{ old('bank1') == ($banks->id) ? 'selected':'' }}
+                                                @endif
                                             >{{ $banks->nama_bank }}</option>
                                         @endforeach
                                     </select>
@@ -235,8 +235,8 @@
                                 <div class="mt-2 px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
                                     x-data="{ open: false }">
                                     <div class="w-full">
-                                        <img src="storage\{{auth()->user()->ic_no}}\{{auth()->user()->peribadi->gambar}}"
-                                            class="h-40">
+                                        {{-- <img src="{{ asset('storage/' . auth()->user()->ic_no . '/'. auth()->user()->peribadi->gambar . '') }}" class="h-40"> --}}
+                                        <img src="{{ asset('storage/' . auth()->user()->ic_no . '/' . auth()->user()->peribadi->gambar . '') }}" class="h-40">
                                     </div>
                                     <div class="w-full">
                                         <span class="mt-3 inline-flex rounded-md shadow-sm">
@@ -490,9 +490,8 @@
                                     <label for="birthdate"
                                         class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir <span
                                             class="text-red-700">*</span></label>
-                                    <input id="birthdate" name="birthdate" value=""
-                                        {{-- value="{{ isset(auth()->user()->peribadi->birthdate) ? auth()->user()->peribadi->birthdate : '' }}"
-                                        --}}
+                                    <input id="birthdate" name="birthdate"
+                                        value="{{ isset(auth()->user()->peribadi->birthdate) ? Carbon\Carbon::parse(auth()->user()->peribadi->birthdate)->format("d/m/Y") : '' }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     @error('birthdate')
                                     <p class="text-red-500 text-xs italic mt-4">

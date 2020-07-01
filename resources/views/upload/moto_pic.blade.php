@@ -1,4 +1,4 @@
-<div class="mt-6">
+<div class="mt-6" id="moto_pic_div">
     <label for="profile_pic" class="block text-sm leading-5 font-medium text-gray-700">
         Gambar Pemohon bersama Motosikal <span class="text-red-700">*</span>
     </label>

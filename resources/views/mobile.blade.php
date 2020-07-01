@@ -211,7 +211,7 @@
                     $errors->has('business_modal') ||
                     $errors->has('business_open') ||
                     $errors->has('business_closed') ||
-                    $errors->has('business_no') ||
+                    $errors->has('business_ehailing') ||
                     $errors->has('business_income') ||
                     $errors->has('partner_name') ||
                     $errors->has('partner_ic') ||
@@ -402,29 +402,30 @@
 
                     <div class="sm:hidden">
                         <select class="form-select block w-full" @change="tab = $event.target.value">
-                            <option value="opt_maklumatPeribadi" x-bind:value="'tab1'" @if(is_null(auth()->
-                                user()->peribadi))
-                                selected
+                            <option value="opt_maklumatPeribadi" x-bind:value="'tab1'" 
+                                @if(is_null(auth()->user()->peribadi))
+                                    selected
                                 @else
                                 @endif
-                                >
+                            >
                                 Maklumat Peribadi
                             </option>
-                            <option value="opt_maklumatPerniagaan" @if(is_null(auth()->user()->peribadi))
-                                disabled
+                            <option value="opt_maklumatPerniagaan" 
+                                @if(is_null(auth()->user()->peribadi))
+                                    disabled
                                 @else
-                                x-bind:value="'tab2'"
+                                    x-bind:value="'tab2'"
                                 @endif
-                                >
+                            >
                                 Maklumat Perniagaan
                             </option>
-                            <option value="opt_maklumatPinjaman" @if(is_null(auth()->user()->peribadi) ||
-                                is_null(auth()->user()->perniagaan))
-                                disabled
+                            <option value="opt_maklumatPinjaman" 
+                                @if(is_null(auth()->user()->peribadi) || is_null(auth()->user()->perniagaan))
+                                    disabled
                                 @else
-                                x-bind:value="'tab3'"
+                                    x-bind:value="'tab3'"
                                 @endif
-                                >
+                            >
                                 Maklumat Pinjaman
                             </option>
                         </select>

@@ -178,7 +178,7 @@ return [
         'spouse_profession' => 'Pekerjaan Suami/Isteri/Waris',
 
         'business_name' => 'Nama Perniagaan/Syarikat',
-        'business_no' => 'No Lesen/Daftar Perniagaan',
+        'business_ehailing' => 'ID E-Hailing',
         'business_sector' => 'Sektor Perniagaan',
         'business_activity' => 'Aktiviti Perniagaan/Projek',
         'business_address1' => 'Alamat Perniagaan/Premis/Projek',

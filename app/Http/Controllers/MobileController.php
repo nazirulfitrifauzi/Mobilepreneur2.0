@@ -314,6 +314,7 @@ class MobileController extends Controller
     public function storePerniagaan(Request $request)
     {
         $this->validate($request, [
+            'business_ehailing'       => ['required'],
             'business_sector'       => ['required'],
             'business_activity'     => ['required'],
             'business_address1'     => ['required', 'string'],
@@ -339,7 +340,7 @@ class MobileController extends Controller
             'user_id'               => auth()->user()->id
         ], [
             'business_name'         => $request->get('business_name'),
-            'business_no'           => $request->get('business_no'),
+            'business_ehailing'     => $request->get('business_ehailing'),
             'business_sector'       => $request->get('business_sector'),
             'business_activity'     => $request->get('business_activity'),
             'business_address1'     => $request->get('business_address1'),
@@ -434,10 +435,10 @@ class MobileController extends Controller
                 "doc_icP_no1"           => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:3000'],
                 "doc_icP_no2"           => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:3000'],
                 "doc_license"           => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_ask"               => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_grant"             => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_roadtax"           => ['required', 'file', 'mimes:pdf', 'max:3000'],
-                "doc_motor_pic"         => ['required', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_ask"               => ['required_if:purpose,==,1', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_grant"             => ['required_if:purpose,==,2', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_roadtax"           => ['required_if:purpose,==,2', 'file', 'mimes:pdf', 'max:3000'],
+                "doc_motor_pic"         => ['required_if:purpose,==,2', 'file', 'mimes:pdf', 'max:3000'],
                 "doc_support_letter"    => ['required', 'file', 'mimes:pdf', 'max:3000'],
                 "doc_bank"              => ['required', 'file', 'mimes:pdf', 'max:3000'],
                 "doc_bil"               => ['required', 'file', 'mimes:pdf', 'max:3000'],
@@ -458,14 +459,14 @@ class MobileController extends Controller
                 "doc_ic_no2"            => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ic_no == NULL)],
                 "doc_icP_no1"           => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_icP_no == NULL)],
                 "doc_icP_no2"           => ['file', 'mimes:jpg,jpeg,png', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_icP_no == NULL)],
-                "doc_ask"               => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_ask == NULL)],
+                "doc_ask"               => ['file', 'mimes:pdf', 'max:3000', 'required_if:purpose,==,1'],
                 "doc_bank"              => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_bank_statements == NULL)],
                 "doc_bil"               => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_utility == NULL)],
                 "doc_support_letter"    => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_support_letter == NULL)],
-                "doc_motor_pic"         => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_motorcycle_pic == NULL)],
+                "doc_motor_pic"         => ['file', 'mimes:pdf', 'max:3000', 'required_if:purpose,==,2'],
                 "doc_license"           => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_driving_license == NULL)],
-                "doc_grant"             => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_motorcycle_grant == NULL)],
-                "doc_roadtax"           => ['file', 'mimes:pdf', 'max:3000', Rule::requiredIf($request->user()->pinjaman->document_roadtax == NULL)],
+                "doc_grant"             => ['file', 'mimes:pdf', 'max:3000', 'required_if:purpose,==,2'],
+                "doc_roadtax"           => ['file', 'mimes:pdf', 'max:3000', 'required_if:purpose,==,2'],
             ]);
         }
 
