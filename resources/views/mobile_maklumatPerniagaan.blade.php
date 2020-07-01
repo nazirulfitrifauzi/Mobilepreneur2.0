@@ -30,12 +30,12 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="business_no"
-                                        class="block text-sm font-medium leading-5 text-gray-700">No Lesen/Daftar Perniagaan</label>
-                                    <input id="business_no" name="business_no"
-                                        value="-"
+                                    <label for="business_ehailing"
+                                        class="block text-sm font-medium leading-5 text-gray-700">ID E-Hailing <span class="text-red-700">*</span></label>
+                                    <input id="business_ehailing" name="business_ehailing"
+                                        value="{{ isset(auth()->user()->perniagaan->business_ehailing) ? auth()->user()->perniagaan->business_ehailing : old('business_ehailing') }}"
                                         class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                    @error('business_no')
+                                    @error('business_ehailing')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
                                     </p>
@@ -303,8 +303,8 @@
         $("#business_name").addClass("border-red-500");
         @enderror
 
-        @error('business_no')
-        $("#business_no").addClass("border-red-500");
+        @error('business_ehailing')
+        $("#business_ehailing").addClass("border-red-500");
         @enderror
 
         @error('business_sector')
