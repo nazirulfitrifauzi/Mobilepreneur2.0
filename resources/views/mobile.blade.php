@@ -162,6 +162,7 @@
                 <div @if ($errors->any())
                     @if (
                     $errors->has('tekun_state') ||
+                    $errors->has('tekun_branch') ||
                     $errors->has('business_status') ||
                     $errors->has('business_type') ||
                     $errors->has('bank1') ||
