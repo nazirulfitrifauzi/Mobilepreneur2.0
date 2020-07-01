@@ -1,4 +1,6 @@
-<div x-show="tab === 'tab3'">
+<div 
+    x-show="tab === 'tab3'"
+>
     <form method="post" action="{{ route('mobile.storePinjaman') }}" enctype="multipart/form-data">
         @csrf
 
@@ -20,7 +22,9 @@
                                         class="block text-sm font-medium leading-5 text-gray-700">Tujuan Pembiayaan
                                         <span class="text-red-700">*</span></label>
                                     <select id="purpose" name="purpose"
-                                        class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        onchange="purposeFunction()"
+                                    >
                                         <option value="">Sila Pilih Tujuan Pembiayaan</option>
                                         <option value="1" @if(isset(auth()->user()->pinjaman->purpose))
                                             @if(auth()->user()->pinjaman->purpose == '1')
@@ -50,61 +54,61 @@
                                     <select id="purchase_price" name="purchase_price"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Jumlah Pembiayaan</option>
-                                        <option value="1000" @if(isset(auth()->user()->pinjaman->purchase_price))
+                                        <option value="1000" class="baiki" @if(isset(auth()->user()->pinjaman->purchase_price))
                                             @if(auth()->user()->pinjaman->purchase_price == '1000')
                                             selected
                                             @else {{ old('purchase_price') == '1000' ? 'selected':'' }} @endif
                                             @else{{ old('purchase_price') == '1000' ? 'selected':'' }}@endif
                                             >RM 1,000.00</option>
-                                        <option value="2000" @if(isset(auth()->user()->pinjaman->purchase_price))
+                                        <option value="2000" class="baiki" @if(isset(auth()->user()->pinjaman->purchase_price))
                                             @if(auth()->user()->pinjaman->purchase_price == '2000')
                                             selected
                                             @else {{ old('purchase_price') == '2000' ? 'selected':'' }} @endif
                                             @else{{ old('purchase_price') == '2000' ? 'selected':'' }}@endif
                                             >RM 2,000.00</option>
-                                        <option value="3000" @if(isset(auth()->user()->pinjaman->purchase_price))
+                                        <option value="3000" class="beli" @if(isset(auth()->user()->pinjaman->purchase_price))
                                             @if(auth()->user()->pinjaman->purchase_price == '3000')
                                             selected
                                             @else {{ old('purchase_price') == '3000' ? 'selected':'' }} @endif
                                             @else{{ old('purchase_price') == '3000' ? 'selected':'' }}@endif
                                             >RM 3,000.00</option>
-                                        <option value="4000" @if(isset(auth()->user()->pinjaman->purchase_price))
+                                        <option value="4000" class="beli" @if(isset(auth()->user()->pinjaman->purchase_price))
                                             @if(auth()->user()->pinjaman->purchase_price == '4000')
                                             selected
                                             @else {{ old('purchase_price') == '4000' ? 'selected':'' }} @endif
                                             @else{{ old('purchase_price') == '4000' ? 'selected':'' }}@endif
                                             >RM 4,000.00</option>
-                                        <option value="5000" @if(isset(auth()->user()->pinjaman->purchase_price))
+                                        <option value="5000" class="beli" @if(isset(auth()->user()->pinjaman->purchase_price))
                                             @if(auth()->user()->pinjaman->purchase_price == '5000')
                                             selected
                                             @else {{ old('purchase_price') == '5000' ? 'selected':'' }} @endif
                                             @else{{ old('purchase_price') == '5000' ? 'selected':'' }}@endif
                                             >RM 5,000.00</option>
-                                        <option value="6000" @if(isset(auth()->user()->pinjaman->purchase_price))
+                                        <option value="6000" class="beli" @if(isset(auth()->user()->pinjaman->purchase_price))
                                             @if(auth()->user()->pinjaman->purchase_price == '6000')
                                             selected
                                             @else {{ old('purchase_price') == '6000' ? 'selected':'' }} @endif
                                             @else{{ old('purchase_price') == '6000' ? 'selected':'' }}@endif
                                             >RM 6,000.00</option>
-                                        <option value="7000" @if(isset(auth()->user()->pinjaman->purchase_price))
+                                        <option value="7000" class="beli" @if(isset(auth()->user()->pinjaman->purchase_price))
                                             @if(auth()->user()->pinjaman->purchase_price == '7000')
                                             selected
                                             @else {{ old('purchase_price') == '7000' ? 'selected':'' }} @endif
                                             @else{{ old('purchase_price') == '7000' ? 'selected':'' }}@endif
                                             >RM 7,000.00</option>
-                                        <option value="8000" @if(isset(auth()->user()->pinjaman->purchase_price))
+                                        <option value="8000" class="beli" @if(isset(auth()->user()->pinjaman->purchase_price))
                                             @if(auth()->user()->pinjaman->purchase_price == '8000')
                                             selected
                                             @else {{ old('purchase_price') == '8000' ? 'selected':'' }} @endif
                                             @else{{ old('purchase_price') == '8000' ? 'selected':'' }}@endif
                                             >RM 8,000.00</option>
-                                        <option value="9000" @if(isset(auth()->user()->pinjaman->purchase_price))
+                                        <option value="9000" class="beli" @if(isset(auth()->user()->pinjaman->purchase_price))
                                             @if(auth()->user()->pinjaman->purchase_price == '9000')
                                             selected
                                             @else {{ old('purchase_price') == '9000' ? 'selected':'' }} @endif
                                             @else{{ old('purchase_price') == '9000' ? 'selected':'' }}@endif
                                             >RM 9,000.00</option>
-                                        <option value="10000" @if(isset(auth()->user()->pinjaman->purchase_price))
+                                        <option value="10000" class="beli" @if(isset(auth()->user()->pinjaman->purchase_price))
                                             @if(auth()->user()->pinjaman->purchase_price == '10000')
                                             selected
                                             @else {{ old('purchase_price') == '10000' ? 'selected':'' }} @endif
@@ -356,8 +360,12 @@
                         <div class="px-4 py-5 bg-white sm:p-6">
                             {{-- kad pengenalan --}}
                             @include('upload.ic')
-                            {{-- kad pengenalan pasangan--}}
-                            @include('upload.ic_partner')
+
+                            @if(auth()->user()->peribadi->marital == 'Berkahwin') 
+                                {{-- kad pengenalan pasangan--}}
+                                @include('upload.ic_partner')
+                            @endif
+
                             {{-- lesen--}}
                             @include('upload.license')
                             {{-- sebut harga--}}
@@ -398,6 +406,27 @@
 </div>
 
 @push('js')
+<script>
+    function purposeFunction() {
+        var x = document.getElementById("purpose").value;
+
+        if(x == 2) { // baiki
+            $(".beli").css("display", "none");
+            $("#ask_div").css("display", "none");
+            $("#grant_div").css("display", "block");
+            $("#tax_div").css("display", "block");
+            $("#moto_pic_div").css("display", "block");
+        } else { //beli
+            $(".beli").css("display", "block");
+            $("#ask_div").css("display", "block");
+            $("#grant_div").css("display", "none");
+            $("#tax_div").css("display", "none");
+            $("#moto_pic_div").css("display", "none");
+        }
+        console.log(x);
+    }
+</script>
+
 <script>
     $("#ic-div1").click(function (event) {
         if (!$(event.target).is('#ic1')) {
