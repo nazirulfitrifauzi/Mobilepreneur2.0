@@ -52,17 +52,16 @@
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Cawangan</option>
                                         @foreach($cawangan as $cawangans)
-                                        <option value="{{ trim($cawangans->kodcawangan," ") }}" @if(isset(auth()->
-                                            user()->peribadi->tekun_branch))
-                                            @if(auth()->user()->peribadi->tekun_branch == trim($cawangans->kodcawangan,"
-                                            "))
-                                            selected
-                                            @else
-                                            {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
-                                            @endif
-                                            @else
-                                            {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
-                                            @endif
+                                            <option value="{{ trim($cawangans->kodcawangan," ") }}" 
+                                                @if(isset(auth()->user()->peribadi->tekun_branch))
+                                                    @if(auth()->user()->peribadi->tekun_branch == trim($cawangans->kodcawangan,""))
+                                                    selected
+                                                    @else
+                                                    {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
+                                                    @endif
+                                                @else
+                                                    {{ old('tekun_branch') == (trim($cawangans->kodcawangan," ")) ? 'selected':'' }}
+                                                @endif
                                             >{{ $cawangans->namacawangan }}</option>
                                         @endforeach
                                     </select>
@@ -1354,24 +1353,24 @@
 
 @push('js')
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('select[name=tekun_state]').on('change', function () {
             var selected = $(this).find(":selected").attr('value');
             $.ajax({
                 url: "{{ route('mobile.getCawangan') }}?negeri=" + selected,
                 method: 'GET',
-                success: function(data) {
+                success: function (data) {
                     $('#tekun_branch').html(data.html);
                 }
             });
         });
 
-        $("input[name$='nationality']").click(function() {
+        $("input[name$='nationality']").click(function () {
             var value = $(this).val();
             var passport = document.getElementById("passport_div");
             var spouse_ic = document.getElementById("spuose_ic_div");
 
-            if(value == 'Tidak') {
+            if (value == 'Tidak') {
                 passport.classList.add('block');
                 passport.classList.remove('hidden');
 
@@ -1386,6 +1385,7 @@
             }
         });
     });
+
 </script>
 <script>
     $("#gambar-div").click(function (event) {
@@ -1430,52 +1430,59 @@
         $.ajax({
             type: 'POST',
             url: "{{ url('mobile-deleteGambar')}}" + '/' + id,
-            data: {'_token' : CSRF_TOKEN, '_method' : 'DELETE'},
+            data: {
+                '_token': CSRF_TOKEN,
+                '_method': 'DELETE'
+            },
             success: function () {
                 window.location = "{{ url('mobile')}}";
             }
         });
     }
+
 </script>
 <script>
     function findBirthday() {
         var ic = String($('#ic_no').val());
-        
-        if(ic.match(/^(\d{2})(\d{2})(\d{2})-?\d{2}-?\d{4}$/)) {
+
+        if (ic.match(/^(\d{2})(\d{2})(\d{2})-?\d{2}-?\d{4}$/)) {
             var year = RegExp.$1;
             var month = RegExp.$2;
             var day = RegExp.$3;
 
-            if(year.substring(0,1) == '0') {
-                var oyear = '20'+year;
+            if (year.substring(0, 1) == '0') {
+                var oyear = '20' + year;
             } else {
-                var oyear = '19'+year;
+                var oyear = '19' + year;
             }
 
             fDate = '' + oyear + '-' + month + '-' + day + ' 00:00:00';
             var date = new Date(fDate);
             var dd = date.getDate();
-            var mm = date.getMonth()+1; 
+            var mm = date.getMonth() + 1;
             var yyyy = date.getFullYear();
-            
-            if(dd<10) 
-            {
-                dd='0'+dd;
-            } 
 
-            if(mm<10) 
-            {
-                mm='0'+mm;
-            } 
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
 
-            var age = {{ now()->year }} - yyyy;
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
 
-            if(!$('#birthdate').val()) {
-				$('#birthdate').val(dd+'/'+mm+'/'+yyyy); // get birth date
-			}
+            var age = {
+                {
+                    now() - > year
+                }
+            } - yyyy;
+
+            if (!$('#birthdate').val()) {
+                $('#birthdate').val(dd + '/' + mm + '/' + yyyy); // get birth date
+            }
             $('#age').val(age); // get age
         }
     }
+
 </script>
 <script>
     $(document).ready(function () {
@@ -1528,11 +1535,11 @@
         @error('marital')
         $("#marital").addClass("border-red-500");
         @enderror
-		
-		@error('birthdate')
+
+        @error('birthdate')
         $("#birthdate").addClass("border-red-500");
         @enderror
-		
+
         @error('dependent')
         $("#dependent").addClass("border-red-500");
         @enderror

@@ -116,8 +116,8 @@
                                         </dt>
                                         <dd class="text-sm leading-5 font-medium text-gray-500">
                                             Nilai Pembiayaan yang akan disalurkan adalah dari RM1,000 sehingga RM10,000
-                                            (1 Tahun & 6 bulan Penangguhan) bagi setiap usahawan mengikut kelayakan
-                                            serta tertakluk kepada terma dan syarat-syarat asas TEKUN Nasional.
+                                            bagi setiap usahawan mengikut kelayakan serta tertakluk kepada terma dan
+                                            syarat-syarat asas TEKUN Nasional.
                                         </dd>
                                     </div>
                                     <div class="sm:col-span-2">
