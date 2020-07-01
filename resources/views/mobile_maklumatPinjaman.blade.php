@@ -124,18 +124,24 @@
                                     <select id="duration" name="duration"
                                         class="mt-1 block form-select w-full py-2 px-3 py-0 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                         <option value="">Sila Pilih Tempoh Pembayaran</option>
-                                        <option value="6" @if(isset(auth()->user()->pinjaman->duration))
-                                            @if(auth()->user()->pinjaman->duration == '6')
-                                            selected
-                                            @else {{ old('duration') == '6' ? 'selected':'' }} @endif
-                                            @else{{ old('duration') == '6' ? 'selected':'' }}@endif
-                                            >6 Bulan</option>
                                         <option value="12" @if(isset(auth()->user()->pinjaman->duration))
                                             @if(auth()->user()->pinjaman->duration == '12')
                                             selected
                                             @else {{ old('duration') == '12' ? 'selected':'' }} @endif
                                             @else{{ old('duration') == '12' ? 'selected':'' }}@endif
                                             >12 Bulan</option>
+                                        <option value="24" @if(isset(auth()->user()->pinjaman->duration))
+                                            @if(auth()->user()->pinjaman->duration == '24')
+                                            selected
+                                            @else {{ old('duration') == '24' ? 'selected':'' }} @endif
+                                            @else{{ old('duration') == '24' ? 'selected':'' }}@endif
+                                            >24 Bulan</option>
+                                        <option value="36" @if(isset(auth()->user()->pinjaman->duration))
+                                            @if(auth()->user()->pinjaman->duration == '36')
+                                            selected
+                                            @else {{ old('duration') == '36' ? 'selected':'' }} @endif
+                                            @else{{ old('duration') == '36' ? 'selected':'' }}@endif
+                                            >36 Bulan</option>
                                     </select>
                                     @error('duration')
                                     <p class="text-red-500 text-xs italic mt-4">
