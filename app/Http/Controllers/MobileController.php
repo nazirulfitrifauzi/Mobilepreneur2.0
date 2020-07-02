@@ -743,7 +743,7 @@ class MobileController extends Controller
             'reference_relation'            => $request->get('reference_relation'),
             'reference_phone'               => $request->get('reference_phone'),
             'document_ic_no'                => $pdf_name_ic,
-            'document_icP_no'               => $pdf_name_icP,
+            'document_icP_no'               => (auth()->user()->peribadi->marital == 'Bujang') ? NULL : $pdf_name_icP,
             'document_ask'                  => $ask_name,
             'document_bank_statements'      => $bank_name,
             'document_utility'              => $bil_name,
