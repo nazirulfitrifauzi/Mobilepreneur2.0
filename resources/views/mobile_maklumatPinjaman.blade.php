@@ -369,22 +369,22 @@
                             {{-- lesen--}}
                             @include('upload.license')
 
-                            @if(!auth()->user()->pinjaman->document_ask || auth()->user()->pinjaman->purpose == 1)
+                            @if(!auth()->user()->pinjaman || auth()->user()->pinjaman->purpose == 1)
                                 {{-- sebut harga--}}
                                 @include('upload.asking_price')
                             @endif
 
-                            @if(!auth()->user()->pinjaman->document_motorcycle_grant || auth()->user()->pinjaman->purpose == 2)
+                            @if(!auth()->user()->pinjaman || auth()->user()->pinjaman->purpose == 2)
                                 {{-- geran --}}
                                 @include('upload.grant')
                             @endif
 
-                            @if(!auth()->user()->pinjaman->document_roadtax || auth()->user()->pinjaman->purpose == 2)
+                            @if(!auth()->user()->pinjaman || auth()->user()->pinjaman->purpose == 2)
                                 {{-- cukai --}}
                                 @include('upload.tax')
                             @endif
 
-                            @if(!auth()->user()->pinjaman->document_motorcycle_pic || auth()->user()->pinjaman->purpose == 2)
+                            @if(!auth()->user()->pinjaman || auth()->user()->pinjaman->purpose == 2)
                                 {{-- moto pic --}}
                                 @include('upload.moto_pic')
                             @endif
