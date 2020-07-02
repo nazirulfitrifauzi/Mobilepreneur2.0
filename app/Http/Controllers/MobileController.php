@@ -504,22 +504,10 @@ class MobileController extends Controller
             $ic2_name = auth()->user()->ic_no . '_ic2.' . $ic2->getClientOriginalExtension();
             Storage::disk('custom')->putFileAs('/' . $ic_no, $ic2, $ic2_name);
 
-            $icP1 = $request->file('doc_icP_no1');
-            $icP1_name = auth()->user()->ic_no . '_icP1.' . $icP1->getClientOriginalExtension();
-            Storage::disk('custom')->putFileAs('/' . $ic_no, $icP1, $icP1_name);
-
-            $icP2 = $request->file('doc_icP_no2');
-            $icP2_name = auth()->user()->ic_no . '_icP2.' . $icP2->getClientOriginalExtension();
-            Storage::disk('custom')->putFileAs('/' . $ic_no, $icP2, $icP2_name);
-
             // convert file to pdf
             $pdf_name_ic = $ic_no . '_ic.pdf';
-            $pdf_name_icP = $ic_no . '_icP.pdf';
-
             $size_ic1 = getimagesize($ic1);
             $size_ic2 = getimagesize($ic2);
-            $size_icP1 = getimagesize($icP1);
-            $size_icP2 = getimagesize($icP2);
 
             $data1 = [
                 'title' => $pdf_name_ic,
@@ -530,30 +518,45 @@ class MobileController extends Controller
                 'image2_size' => $size_ic2,
             ];
 
-            $data2 = [
-                'title' => $pdf_name_icP,
-                'ic' => $ic_no,
-                'image1' => $icP1_name,
-                'image1_size' => $size_icP1,
-                'image2' => $icP2_name,
-                'image2_size' => $size_icP2,
-            ];
-
             $pdf1 = PDF::loadView('convert.ic_convert', $data1);
-            $pdf2 = PDF::loadView('convert.icP_convert', $data2);
 
             // output pdf file & store
             $file1 = $pdf1->output();
-            $file2 = $pdf2->output();
-
             Storage::put('' . $ic_no . '/' . $pdf_name_ic, $file1);
-            Storage::put('' . $ic_no . '/' . $pdf_name_icP, $file2);
 
             // delete image file
             unlink(public_path('storage/' . $ic_no . '/' . $ic1_name));
             unlink(public_path('storage/' . $ic_no . '/' . $ic2_name));
-            unlink(public_path('storage/' . $ic_no . '/' . $icP1_name));
-            unlink(public_path('storage/' . $ic_no . '/' . $icP2_name));
+
+            if(auth()->user()->peribadi->marital == 'Berkahwin') {
+                $icP1 = $request->file('doc_icP_no1');
+                $icP1_name = auth()->user()->ic_no . '_icP1.' . $icP1->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $icP1, $icP1_name);
+                    
+                $icP2 = $request->file('doc_icP_no2');
+                $icP2_name = auth()->user()->ic_no . '_icP2.' . $icP2->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $icP2, $icP2_name);
+
+                $pdf_name_icP = $ic_no . '_icP.pdf';
+                $size_icP1 = getimagesize($icP1);
+                $size_icP2 = getimagesize($icP2);
+
+                $data2 = [
+                    'title' => $pdf_name_icP,
+                    'ic' => $ic_no,
+                    'image1' => $icP1_name,
+                    'image1_size' => $size_icP1,
+                    'image2' => $icP2_name,
+                    'image2_size' => $size_icP2,
+                ];
+                $pdf2 = PDF::loadView('convert.icP_convert', $data2);
+
+                $file2 = $pdf2->output();
+                Storage::put('' . $ic_no . '/' . $pdf_name_icP, $file2);
+
+                unlink(public_path('storage/' . $ic_no . '/' . $icP1_name));
+                unlink(public_path('storage/' . $ic_no . '/' . $icP2_name));
+            }
 
             $bank = $request->file('doc_bank');
             $bank_name = auth()->user()->ic_no . '_bank.' . $bank->getClientOriginalExtension();
@@ -649,44 +652,46 @@ class MobileController extends Controller
                 $pdf_name_ic = auth()->user()->pinjaman->document_ic_no;
             }
 
-            if (is_null(auth()->user()->pinjaman->document_icP_no)) {
-                // store image before convert
+            if(auth()->user()->peribadi->marital == 'Berkahwin'){
+                if (is_null(auth()->user()->pinjaman->document_icP_no)) {
+                    // store image before convert
 
-                $icP1 = $request->file('doc_icP_no1');
-                $icP1_name = auth()->user()->ic_no . '_icP1.' . $icP1->getClientOriginalExtension();
-                Storage::disk('custom')->putFileAs('/' . $ic_no, $icP1, $icP1_name);
+                    $icP1 = $request->file('doc_icP_no1');
+                    $icP1_name = auth()->user()->ic_no . '_icP1.' . $icP1->getClientOriginalExtension();
+                    Storage::disk('custom')->putFileAs('/' . $ic_no, $icP1, $icP1_name);
 
-                $icP2 = $request->file('doc_icP_no2');
-                $icP2_name = auth()->user()->ic_no . '_icP2.' . $icP2->getClientOriginalExtension();
-                Storage::disk('custom')->putFileAs('/' . $ic_no, $icP2, $icP2_name);
+                    $icP2 = $request->file('doc_icP_no2');
+                    $icP2_name = auth()->user()->ic_no . '_icP2.' . $icP2->getClientOriginalExtension();
+                    Storage::disk('custom')->putFileAs('/' . $ic_no, $icP2, $icP2_name);
 
-                // convert file to pdf
-                $pdf_name_icP = $ic_no . '_icP.pdf';
+                    // convert file to pdf
+                    $pdf_name_icP = $ic_no . '_icP.pdf';
 
-                $size_icP1 = getimagesize($icP1);
-                $size_icP2 = getimagesize($icP2);
+                    $size_icP1 = getimagesize($icP1);
+                    $size_icP2 = getimagesize($icP2);
 
-                $data2 = [
-                    'title' => $pdf_name_icP,
-                    'ic' => $ic_no,
-                    'image1' => $icP1_name,
-                    'image1_size' => $size_icP1,
-                    'image2' => $icP2_name,
-                    'image2_size' => $size_icP2,
-                ];
+                    $data2 = [
+                        'title' => $pdf_name_icP,
+                        'ic' => $ic_no,
+                        'image1' => $icP1_name,
+                        'image1_size' => $size_icP1,
+                        'image2' => $icP2_name,
+                        'image2_size' => $size_icP2,
+                    ];
 
-                $pdf2 = PDF::loadView('convert.icP_convert', $data2);
+                    $pdf2 = PDF::loadView('convert.icP_convert', $data2);
 
-                // output pdf file & store
-                $file2 = $pdf2->output();
+                    // output pdf file & store
+                    $file2 = $pdf2->output();
 
-                Storage::put('' . $ic_no . '/' . $pdf_name_icP, $file2);
+                    Storage::put('' . $ic_no . '/' . $pdf_name_icP, $file2);
 
-                // delete image file
-                unlink(public_path('storage/' . $ic_no . '/' . $icP1_name));
-                unlink(public_path('storage/' . $ic_no . '/' . $icP2_name));
-            } else {
-                $pdf_name_icP = auth()->user()->pinjaman->document_ic_no;
+                    // delete image file
+                    unlink(public_path('storage/' . $ic_no . '/' . $icP1_name));
+                    unlink(public_path('storage/' . $ic_no . '/' . $icP2_name));
+                } else {
+                    $pdf_name_icP = auth()->user()->pinjaman->document_ic_no;
+                }
             }
 
             if (is_null(auth()->user()->pinjaman->document_bank_statements)) {
