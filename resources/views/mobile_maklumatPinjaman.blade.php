@@ -368,14 +368,27 @@
 
                             {{-- lesen--}}
                             @include('upload.license')
-                            {{-- sebut harga--}}
-                            @include('upload.asking_price')
-                            {{-- geran --}}
-                            @include('upload.grant')
-                            {{-- cukai --}}
-                            @include('upload.tax')
-                            {{-- moto pic --}}
-                            @include('upload.moto_pic')
+
+                            @if(!auth()->user()->pinjaman->document_ask || auth()->user()->pinjaman->purpose == 1)
+                                {{-- sebut harga--}}
+                                @include('upload.asking_price')
+                            @endif
+
+                            @if(!auth()->user()->pinjaman->document_motorcycle_grant || auth()->user()->pinjaman->purpose == 2)
+                                {{-- geran --}}
+                                @include('upload.grant')
+                            @endif
+
+                            @if(!auth()->user()->pinjaman->document_roadtax || auth()->user()->pinjaman->purpose == 2)
+                                {{-- cukai --}}
+                                @include('upload.tax')
+                            @endif
+
+                            @if(!auth()->user()->pinjaman->document_motorcycle_pic || auth()->user()->pinjaman->purpose == 2)
+                                {{-- moto pic --}}
+                                @include('upload.moto_pic')
+                            @endif
+                            
                             {{-- e-hailing --}}
                             @include('upload.ehailing')
                             {{-- bank --}}
@@ -411,19 +424,20 @@
         var x = document.getElementById("purpose").value;
 
         if(x == 2) { // baiki
+            document.getElementById("purchase_price").value = "";
             $(".beli").css("display", "none");
             $("#ask_div").css("display", "none");
             $("#grant_div").css("display", "block");
             $("#tax_div").css("display", "block");
             $("#moto_pic_div").css("display", "block");
         } else { //beli
+            document.getElementById("purchase_price").value = "";
             $(".beli").css("display", "block");
             $("#ask_div").css("display", "block");
             $("#grant_div").css("display", "none");
             $("#tax_div").css("display", "none");
             $("#moto_pic_div").css("display", "none");
         }
-        console.log(x);
     }
 </script>
 
