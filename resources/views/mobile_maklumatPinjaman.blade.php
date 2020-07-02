@@ -361,7 +361,7 @@
                             {{-- kad pengenalan --}}
                             @include('upload.ic')
 
-                            @if(auth()->user()->peribadi->marital == 'Berkahwin') 
+                            @if(isset(auth()->user()->peribadi->marital) && auth()->user()->peribadi->marital == 'Berkahwin') 
                                 {{-- kad pengenalan pasangan--}}
                                 @include('upload.ic_partner')
                             @endif
