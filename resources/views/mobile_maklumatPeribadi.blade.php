@@ -1469,11 +1469,7 @@
                 mm = '0' + mm;
             }
 
-            var age = {
-                {
-                    now() - > year
-                }
-            } - yyyy;
+            var age = {{ now()->year }} - yyyy;
 
             if (!$('#birthdate').val()) {
                 $('#birthdate').val(dd + '/' + mm + '/' + yyyy); // get birth date
