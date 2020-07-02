@@ -68,7 +68,7 @@ class MobileController extends Controller
             ->orderby('flag', 'DESC')
             ->get();
 
-        if (auth()->user()->submit == "1" && auth()->user()->scheme_code == '1131') {
+        if (auth()->user()->submit == "1" && auth()->user()->scheme_code == '1134') {
             return view('mobile_status');
         } else {
             return view('mobile', compact(
@@ -95,11 +95,11 @@ class MobileController extends Controller
 
     public function status()
     {
-        if (auth()->user()->completed == 0 && auth()->user()->scheme_code == '1131') {
+        if (auth()->user()->completed == 0 && auth()->user()->scheme_code == '1134') {
             return redirect('mobile');
         }
 
-        if (auth()->user()->completed == 1 && auth()->user()->submit == 0 && auth()->user()->scheme_code == '1131') {
+        if (auth()->user()->completed == 1 && auth()->user()->submit == 0 && auth()->user()->scheme_code == '1134') {
             $clientIP = request()->ip();
             $name = auth()->user()->name;
             $email = auth()->user()->email;
@@ -129,7 +129,7 @@ class MobileController extends Controller
             return redirect()->route('mobile.status');
         }
 
-        if (auth()->user()->submit == 1 && auth()->user()->scheme_code == '1131') {
+        if (auth()->user()->submit == 1 && auth()->user()->scheme_code == '1134') {
             if (auth()->user()->status == 7) {
                 $catatan = User::select('users.*', 'tbl_daftar.catatan')
                     ->where('users.id', auth()->user()->id)
@@ -297,7 +297,7 @@ class MobileController extends Controller
 
         $peribadi->save();
 
-        User::where('id', auth()->user()->id)->update(['scheme_code' => '1131']);
+        User::where('id', auth()->user()->id)->update(['scheme_code' => '1134']);
 
         if ($request->get('nationality') == 'Ya') {
             Peribadi::where('user_id', auth()->user()->id)->update(['passport_no' => null]);
@@ -474,6 +474,27 @@ class MobileController extends Controller
 
         if (is_null(auth()->user()->pinjaman)) { // pinjaman null
 
+            if($request->get('purpose') == 1) { // beli
+
+                $ask = $request->file('doc_ask');
+                $ask_name = auth()->user()->ic_no . 'ask.' . $ask->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $ask, $ask_name);
+
+            } elseif($request->get('purpose') == 2) { //baiki
+                $grant = $request->file('doc_grant');
+                $grant_name = auth()->user()->ic_no . '_grant.' . $grant->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $grant, $grant_name);
+
+                $roadtax = $request->file('doc_roadtax');
+                $roadtax_name = auth()->user()->ic_no . '_roadtax.' . $roadtax->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $roadtax, $roadtax_name);
+
+                $motor_pic = $request->file('doc_motor_pic');
+                $motor_pic_name = auth()->user()->ic_no . '_motorPic.' . $motor_pic->getClientOriginalExtension();
+                Storage::disk('custom')->putFileAs('/' . $ic_no, $motor_pic, $motor_pic_name);
+
+            }
+
             // store image before convert
             $ic1 = $request->file('doc_ic_no1');
             $ic1_name = auth()->user()->ic_no . '_ic1.' . $ic1->getClientOriginalExtension();
@@ -534,10 +555,6 @@ class MobileController extends Controller
             unlink(public_path('storage/' . $ic_no . '/' . $icP1_name));
             unlink(public_path('storage/' . $ic_no . '/' . $icP2_name));
 
-            $ask = $request->file('doc_ask');
-            $ask_name = auth()->user()->ic_no . 'ask.' . $ask->getClientOriginalExtension();
-            Storage::disk('custom')->putFileAs('/' . $ic_no, $ask, $ask_name);
-
             $bank = $request->file('doc_bank');
             $bank_name = auth()->user()->ic_no . '_bank.' . $bank->getClientOriginalExtension();
             Storage::disk('custom')->putFileAs('/' . $ic_no, $bank, $bank_name);
@@ -550,22 +567,48 @@ class MobileController extends Controller
             $support_letter_name = auth()->user()->ic_no . '_supportLetter.' . $support_letter->getClientOriginalExtension();
             Storage::disk('custom')->putFileAs('/' . $ic_no, $support_letter, $support_letter_name);
 
-            $motor_pic = $request->file('doc_motor_pic');
-            $motor_pic_name = auth()->user()->ic_no . '_motorPic.' . $motor_pic->getClientOriginalExtension();
-            Storage::disk('custom')->putFileAs('/' . $ic_no, $motor_pic, $motor_pic_name);
-
             $license = $request->file('doc_license');
             $license_name = auth()->user()->ic_no . '_license.' . $license->getClientOriginalExtension();
             Storage::disk('custom')->putFileAs('/' . $ic_no, $license, $license_name);
 
-            $grant = $request->file('doc_grant');
-            $grant_name = auth()->user()->ic_no . '_grant.' . $grant->getClientOriginalExtension();
-            Storage::disk('custom')->putFileAs('/' . $ic_no, $grant, $grant_name);
-
-            $roadtax = $request->file('doc_roadtax');
-            $roadtax_name = auth()->user()->ic_no . '_roadtax.' . $roadtax->getClientOriginalExtension();
-            Storage::disk('custom')->putFileAs('/' . $ic_no, $roadtax, $roadtax_name);
         } else { //pinjaman ade rekod
+
+            if ($request->get('purpose') == 1) { // beli
+
+                if (is_null(auth()->user()->pinjaman->document_ask)) {
+                    $ask = $request->file('doc_ask');
+                    $ask_name = auth()->user()->ic_no . 'ask.' . $ask->getClientOriginalExtension();
+                    Storage::disk('custom')->putFileAs('/' . $ic_no, $ask, $ask_name);
+                } else {
+                    $ask_name = auth()->user()->pinjaman->document_bank_statements;
+                }
+
+            } elseif($request->get('purpose') == 2) { //baiki
+
+                if (is_null(auth()->user()->pinjaman->document_motorcycle_pic)) {
+                    $motor_pic = $request->file('doc_motor_pic');
+                    $motor_pic_name = auth()->user()->ic_no . '_motorPic.' . $motor_pic->getClientOriginalExtension();
+                    Storage::disk('custom')->putFileAs('/' . $ic_no, $motor_pic, $motor_pic_name);
+                } else {
+                    $motor_pic_name = auth()->user()->pinjaman->document_motorcycle_pic;
+                }
+
+                if (is_null(auth()->user()->pinjaman->document_motorcycle_grant)) {
+                    $grant = $request->file('doc_grant');
+                    $grant_name = auth()->user()->ic_no . '_grant.' . $grant->getClientOriginalExtension();
+                    Storage::disk('custom')->putFileAs('/' . $ic_no, $grant, $grant_name);
+                } else {
+                    $grant_name = auth()->user()->pinjaman->document_motorcycle_grant;
+                }
+
+                if (is_null(auth()->user()->pinjaman->document_roadtax)) {
+                    $roadtax = $request->file('doc_roadtax');
+                    $roadtax_name = auth()->user()->ic_no . '_roadtax.' . $roadtax->getClientOriginalExtension();
+                    Storage::disk('custom')->putFileAs('/' . $ic_no, $roadtax, $roadtax_name);
+                } else {
+                    $roadtax_name = auth()->user()->pinjaman->document_roadtax;
+                }
+            }
 
             if (is_null(auth()->user()->pinjaman->document_ic_no)) {
                 // store image before convert
@@ -646,14 +689,6 @@ class MobileController extends Controller
                 $pdf_name_icP = auth()->user()->pinjaman->document_ic_no;
             }
 
-            if (is_null(auth()->user()->pinjaman->document_ask)) {
-                $ask = $request->file('doc_ask');
-                $ask_name = auth()->user()->ic_no . 'ask.' . $ask->getClientOriginalExtension();
-                Storage::disk('custom')->putFileAs('/' . $ic_no, $ask, $ask_name);
-            } else {
-                $ask_name = auth()->user()->pinjaman->document_bank_statements;
-            }
-
             if (is_null(auth()->user()->pinjaman->document_bank_statements)) {
                 $bank = $request->file('doc_bank');
                 $bank_name = auth()->user()->ic_no . '_bank.' . $bank->getClientOriginalExtension();
@@ -678,14 +713,6 @@ class MobileController extends Controller
                 $support_letter_name = auth()->user()->pinjaman->document_support_letter;
             }
 
-            if (is_null(auth()->user()->pinjaman->document_motorcycle_pic)) {
-                $motor_pic = $request->file('doc_motor_pic');
-                $motor_pic_name = auth()->user()->ic_no . '_motorPic.' . $motor_pic->getClientOriginalExtension();
-                Storage::disk('custom')->putFileAs('/' . $ic_no, $motor_pic, $motor_pic_name);
-            } else {
-                $motor_pic_name = auth()->user()->pinjaman->document_motorcycle_pic;
-            }
-
             if (is_null(auth()->user()->pinjaman->document_driving_license)) {
                 $license = $request->file('doc_license');
                 $license_name = auth()->user()->ic_no . '_license.' . $license->getClientOriginalExtension();
@@ -694,21 +721,6 @@ class MobileController extends Controller
                 $license_name = auth()->user()->pinjaman->document_driving_license;
             }
 
-            if (is_null(auth()->user()->pinjaman->document_motorcycle_grant)) {
-                $grant = $request->file('doc_grant');
-                $grant_name = auth()->user()->ic_no . '_grant.' . $grant->getClientOriginalExtension();
-                Storage::disk('custom')->putFileAs('/' . $ic_no, $grant, $grant_name);
-            } else {
-                $grant_name = auth()->user()->pinjaman->document_motorcycle_grant;
-            }
-
-            if (is_null(auth()->user()->pinjaman->document_roadtax)) {
-                $roadtax = $request->file('doc_roadtax');
-                $roadtax_name = auth()->user()->ic_no . '_roadtax.' . $roadtax->getClientOriginalExtension();
-                Storage::disk('custom')->putFileAs('/' . $ic_no, $roadtax, $roadtax_name);
-            } else {
-                $roadtax_name = auth()->user()->pinjaman->document_roadtax;
-            }
         }
 
         $pinjaman = Pinjaman::updateOrCreate([
