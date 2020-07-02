@@ -744,14 +744,14 @@ class MobileController extends Controller
             'reference_phone'               => $request->get('reference_phone'),
             'document_ic_no'                => $pdf_name_ic,
             'document_icP_no'               => (auth()->user()->peribadi->marital == 'Bujang') ? NULL : $pdf_name_icP,
-            'document_ask'                  => $ask_name,
+            'document_ask'                  => ($request->get('purpose') == 2) ? NULL : $ask_name,
             'document_bank_statements'      => $bank_name,
             'document_utility'              => $bil_name,
             'document_support_letter'       => $support_letter_name,
-            'document_motorcycle_pic'       => $motor_pic_name,
+            'document_motorcycle_pic'       => ($request->get('purpose') == 1) ? NULL : $motor_pic_name,
             'document_driving_license'      => $license_name,
-            'document_motorcycle_grant'     => $grant_name,
-            'document_roadtax'              => $roadtax_name,
+            'document_motorcycle_grant'     => ($request->get('purpose') == 1) ? NULL : $grant_name,
+            'document_roadtax'              => ($request->get('purpose') == 1) ? NULL : $roadtax_name,
             'completed'                     => 1,
         ]);
 
